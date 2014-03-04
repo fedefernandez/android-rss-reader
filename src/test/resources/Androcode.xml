@@ -1,0 +1,1147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2full.xsl"?><?xml-stylesheet type="text/css" media="screen" href="http://feeds.feedburner.com/~d/styles/itemcontent.css"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
+
+	<channel>
+		<title>Androcode</title>
+
+		<link>http://androcode.es</link>
+		<description>Programación, Tecnología, ¡Android!</description>
+		<lastBuildDate>Thu, 14 Feb 2013 10:37:35 +0000</lastBuildDate>
+		<language>es-ES</language>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+		<generator>http://wordpress.org/?v=3.5</generator>
+		<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom"
+			rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/Androcode" />
+		<feedburner:info xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0"
+			uri="androcode" />
+		<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom"
+			rel="hub" href="http://pubsubhubbub.appspot.com/" />
+		<item>
+			<title>Cómo hacer más cómodo el trabajo con Eclipse</title>
+			<link>http://androcode.es/2013/02/como-hacer-mas-comodo-el-trabajo-con-eclipse/</link>
+			<comments>http://androcode.es/2013/02/como-hacer-mas-comodo-el-trabajo-con-eclipse/#comments</comments>
+			<pubDate>Thu, 14 Feb 2013 10:37:16 +0000</pubDate>
+			<dc:creator>Sloy</dc:creator>
+			<category><![CDATA[Tutoriales]]></category>
+			<category><![CDATA[ADT]]></category>
+			<category><![CDATA[Android]]></category>
+			<category><![CDATA[Eclipse]]></category>
+			<category><![CDATA[Herramientas]]></category>
+			<category><![CDATA[Programación]]></category>
+			<category><![CDATA[SDK]]></category>
+			<category><![CDATA[Tips]]></category>
+
+			<guid isPermaLink="false">http://androcode.es/?p=3673</guid>
+			<description><![CDATA[Lo parezca o no, trabajar cómodo con nuestro entorno de desarrollo es muy importante de cara a la productividad. Es por eso que nos cuesta tanto cambiarnos a otro IDE cuando estamos acostumbrados a uno concreto. Nos sentimos perdidos, todo lo que es diferente nos parece peor. Porque no hay nada como escribir código cómodamente. &#8230; </p><p><a class="more-link block-button" href="http://androcode.es/2013/02/como-hacer-mas-comodo-el-trabajo-con-eclipse/">Continuar leyendo</a>]]></description>
+			<content:encoded><![CDATA[<p>Lo parezca o no, trabajar cómodo con nuestro entorno de desarrollo es muy importante de cara a la productividad. Es por eso que nos cuesta tanto cambiarnos a otro IDE cuando estamos acostumbrados a uno concreto. Nos sentimos perdidos, todo lo que es diferente nos parece peor. Porque no hay nada como escribir código cómodamente.</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/eclipse_indigo.png"><img class="aligncenter size-full wp-image-3722" alt="eclipse_indigo" src="http://androcode.es/wp-content/uploads/2013/02/eclipse_indigo.png" width="455" height="294" /></a></p>
+<p>El post de hoy no es tan exclusivo para el desarrollo Android, pero como también nos afecta a nosotros me ha parecido bien tratarlo. Vamos a ver algunos trucos y consejos para escribir código aún más fácilmente, si estamos usando Eclipse.<span id="more-3673"></span></p>
+<p>Todo lo que se comenta en esta entrada son opiniones a título personal y como orientación Para gustos colores, si no te parecen buenos consejos o tienes otros mejores, cuéntanoslo en los comentarios <img src='http://androcode.es/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' /> </p>
+<div class="important_block message-block"><p class="printonly"><strong>Important!</strong></p>Utilizaré como base el ADT Bundle para Windows que tenemos disponible en la página de desarrolladores, que contiene el SDK y una versión modificada de Eclipse 3.6 con la configuración básica para empezar a desarrollar aplicaciones Android.</div>
+<p>Como la lista es larga y variada os dejo un índice para localizar más rápidamente cada cosa:</p>
+<p style="padding-left: 30px">Preparación del entorno</p>
+<ul style="padding-left: 30px">
+<li><a href="#codificacion">Cambiar la codificación de caracteres</a></li>
+<li><a href="#build">Desactivar compilado automático y compilar todo</a></li>
+<li><a href="#spelling">Desactivar corrección ortográfica</a></li>
+<li><a href="#paquetes">Explorador de paquetes en vista jerárquica</a></li>
+</ul>
+<p style="padding-left: 30px"><a href="#ayuda">Ayuda para escribir código</a></p>
+<ul style="padding-left: 30px">
+<li><a href="#semicolon">Punto y coma siempre al final</a></li>
+<li><a href="#overwrite">Autocompletado de métodos mejorado</a></li>
+<li><a href="#strings">Escapar Strings al pegar texto</a></li>
+<li><a href="#save">Acciones al guardar</a></li>
+<li><a href="#format">Formateo de código</a></li>
+<li><a href="#tags">Etiquetas</a></li>
+<li><a href="#codetemplates">Plantillas de código</a></li>
+<li><a href="#templatesadt">Plantillas de ADT</a></li>
+</ul>
+<div id="preparacion"> </div>
+<h1 id="c1"><span style="text-decoration: underline">Preparación del entorno</span></h1>
+<p>Lo primero que vamos a ver son algunos cambios en la configuración de Eclipse que podemos hacer para facilitarnos el trabajo. Aunque opciones hay muchas, éstas son las que me han parecido más útiles. Mi <em>&#8220;must have&#8221;</em> personal, lo primero que tengo que cambiar si hago una instalación nueva.</p>
+<div id="codificacion"> </div>
+<h1>Cambiar la codificación de caracteres</h1>
+<p>Es un tema por el que me he echado las manos a la cabeza más de una vez. Y más de dos, y de trés&#8230; Trabajar con diferentes codificaciones es un infierno, sólo causará problemas. Eclipse por defecto en Windows utiliza una codificación, en Linux otra, y en OSX otra distinta. Si trabajas siempre en la misma máquina el problema puede pasar desapercibido, pero en cuanto migras un proyecto de sistema, se lo pasas a alguien, etc. verás como los caracteres especiales se han convertido en símbolos extraños.</p>
+<p>Los angloparlantes no suelen tener graves problemas con esto, pues la mayoría de codificaciones <em>respetan</em> sus símbolos. Pero nosotros, con tanta tilde y símbolo raro, vamos a encontrarnos en apuros. Lo mejor es curarse en salud y cambiar desde un principio la codificación de todo el workspace, en el menú bajo Window &gt; Preferences,  a una universal como UTF-8. </p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/codificacion.png"><img class="aligncenter size-medium wp-image-3683" alt="codificacion" src="http://androcode.es/wp-content/uploads/2013/02/codificacion-300x258.png" width="300" height="258" /></a></p>
+<p>Si lo hacéis no me lo agradeceréis porque no os daréis cuenta de que os ha servido. Pero si no, ya os arrepentiréis.  <img src='http://androcode.es/wp-includes/images/smilies/icon_wink.gif' alt=';-)' class='wp-smiley' /> </p>
+<div id="build"> </div>
+<h1 id="compilado">Desactivar <em>compilado automático</em> y <em>compilar todo</em></h1>
+<p>Por defecto Eclipse tiene activada la opción de compilar automáticamente nuestro proyecto cuando guardamos algún archivo modificado. Esto es especialmente problemático en Android cuando tenemos proyectos relativamente complejos, con varias librerías externas vinculadas y demás compilar puede llevar varios segundos o peor en ordenadores con pocos recursos (¿he oído minutos?). Y no es agradable que nos interrumpan el trabajo sólo por guardar los cambios. Por ello es de lo primero que desactivo cuando abro Eclipse por primera vez. Sólo hay que desmarcar la opción en Project &gt; Build Automatically.</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/build.png"><img class="aligncenter size-medium wp-image-3685" alt="build" src="http://androcode.es/wp-content/uploads/2013/02/build-300x153.png" width="300" height="153" /></a></p>
+<p>Aunque desactivando dicha opción tenemos el <del>problema</del> inconveniente de tener que compilar manualmente cuando lo necesitemos. Por suerte tenemos el atajo de teclado <strong>Ctrl+B</strong> para hacerlo a golpe de tecla, pero este atajo corresponde al comando <em>Build All</em>, es decir que nos compilará todos los proyectos de nuestro workspace. ¡Aún peor que lo anterior! Don&#8217;t panic, es tan fácil como cambiar el atajo para que ejecute el comando <em>Build Project</em> en su lugar, de esa forma la combinación te teclas sólo compilará el proyecto en el que nos encontremos en ese momento. En el apartado Keys de las preferencias buscamos el comando <em>Build All</em> y le anulamos el atajo de teclado con <strong>Unbind Command</strong>, luego seleccionamos <em>Build Project</em> y en Binding pulsamos la combinación Ctrl+B (u otra) para establecérsela.</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/build3.png"><img class="aligncenter size-medium wp-image-3686" alt="build3" src="http://androcode.es/wp-content/uploads/2013/02/build3-300x215.png" width="300" height="215" /></a></p>
+<p>Aunque para ejecutar no suele hacer falta compilar porque ya lo hace solo, ya sabemos cómo se pone de tonto a veces Eclipse. Es uno de los comandos que yo más utilizo.</p>
+<div id="spelling"> </div>
+<h1>Desactivar corrección ortográfica</h1>
+<p>Curiosamente Eclipse tiene corrector ortográfico para los comentarios y documentación. Pero a los hispanohablantes no nos sirve de mucho si escribimos en español porque sólo está en inglés. Podríamos descargar e instalar un diccionario en español, pero yo prefiero optar por desactivarlo por completo y quitarme las molestas líneas rojas que salen por todas partes.</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/spelling.png"><img class="aligncenter size-medium wp-image-3688" alt="spelling" src="http://androcode.es/wp-content/uploads/2013/02/spelling-300x235.png" width="300" height="235" /></a></p>
+<div id="paquetes"> </div>
+<h1>Explorador de paquetes en vista jerárquica</h1>
+<p>El explorador de paquetes nos permite 2 formas básicas de visualizarlos: <strong>plana</strong> y<strong> jerárquica</strong>. Por defecto nos los muestra de forma plana, pero cuando tenemos muchos paquetes anidados la jerárquica permite verlos más claramente con su estructura de árbol. ¿No os parece?</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/package.png"><img class="aligncenter size-full wp-image-3689" alt="package" src="http://androcode.es/wp-content/uploads/2013/02/package.png" width="585" height="417" /></a></p>
+<p>Podéis usar la que más os guste, en cualquier caso el cambio es sencillo.</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/package3.png"><img class="aligncenter size-medium wp-image-3690" alt="package3" src="http://androcode.es/wp-content/uploads/2013/02/package3-300x182.png" width="300" height="182" /></a></p>
+<div id="ayuda"> </div>
+<h1><span style="text-decoration: underline">Ayuda para escribir código</span></h1>
+<p>Ahora veremos alguno ajustes orientados a facilitarnos la escritura de código. Eclipse permite un alto nivel de personalización, pero sólo veremos unos que me parecen muy interesantes. Como antes, recomiendo echar un ojo a todas las opciones y adaptarlo todo a nuestras necesidades.</p>
+<div id="semicolon"> </div>
+<h1>Punto y coma siempre al final</h1>
+<p>En java las sentencias llevan un punto y coma al final. Parece una tontería, pero son incontables las veces que he tenido que desplazarme al final de la línea para poner un punto y coma. Con este cambio Eclipse colocará la puntuación correctamente al final de la línea aunque estemos editando en mitad, ahorrándonos un par de pulsaciones de tecla.</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/semicolon.png"><img class="aligncenter size-medium wp-image-3691" alt="semicolon" src="http://androcode.es/wp-content/uploads/2013/02/semicolon-300x275.png" width="300" height="275" /></a></p>
+<div id="overwrite"> </div>
+<h1>Autocompletado de métodos mejorado</h1>
+<p>El autocompletado de Eclipse es magnífico. <strong>Ctrl+Espacio</strong> es la combinación que más uso con diferencia, nos ahorra escribir una barbaridad de código. Pero algo que siempre me ha reventado es cómo al completar una variable o un método desde en medio inserta el texto en vez de modificarlo.</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/overwrite12.png"><img class="aligncenter size-full wp-image-3692" alt="overwrite12" src="http://androcode.es/wp-content/uploads/2013/02/overwrite12.png" width="401" height="200" /></a></p>
+<p>Pues hace poco descubrí que se podía cambiar para que sustituyera el resto del texto. De esa forma en el ejemplo anterior obtendríamos lo siguiente:</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/overwrite34.png"><img class="aligncenter size-full wp-image-3693" alt="overwrite34" src="http://androcode.es/wp-content/uploads/2013/02/overwrite34.png" width="401" height="200" /></a></p>
+<p>A mi me resulta muchísimo más útil la segunda transformación, y sólo hay que cambiar una opción:</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/overwrite.png"><img class="aligncenter size-medium wp-image-3694" alt="overwrite" src="http://androcode.es/wp-content/uploads/2013/02/overwrite-300x275.png" width="300" height="275" /></a></p>
+<div id="strings"> </div>
+<h1>Escapar Strings al pegar texto</h1>
+<p>Copiar y pegar es el recurso más utilizado. ¿Cuántas veces hemos pegado en una cadena un texto copiado de otra parte que contiene comillas y otros caracteres que necesitan ser escapados (como las comillas en un código html)? Activando esta opción no tendremos que hacerlo más, pues el texto se transformará automáticamente cuando lo peguemos para escapar dichos caracteres.</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/strings.png"><img class="aligncenter size-medium wp-image-3696" alt="strings" src="http://androcode.es/wp-content/uploads/2013/02/strings-300x276.png" width="300" height="276" /></a></p>
+<p>Aquí vemos cómo quedaría al pegar una cadena con comillas antes y después de activar esta opción:</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/strings2.png"><img class="aligncenter size-full wp-image-3697" alt="strings2" src="http://androcode.es/wp-content/uploads/2013/02/strings2.png" width="499" height="78" /></a></p>
+<div id="save"> </div>
+<h1>Acciones al guardar</h1>
+<p>Nos puede venir bien que Eclipse haga determinadas cosas automáticamente cuando guardamos un archivo. Por ejemplo, que reorganice las importaciones de paquetes, o que formatee el código según las reglas que le digamos. Debo confesar que yo personalmente lo tengo desactivado, porque tengo la manía de guardar los cambios constantemente, y al procesar el archivo cada vez puedo notar el retraso en contadas ocasiones si el ordenador está pasando un mal rato y no lo soporto. Pero aun así, si no sois tan maníacos como yo seguro que agradecéis esta función.</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/save.png"><img class="aligncenter size-medium wp-image-3698" alt="save" src="http://androcode.es/wp-content/uploads/2013/02/save-300x276.png" width="300" height="276" /></a></p>
+<div id="format"> </div>
+<h1>Formateo de código</h1>
+<p>Otra de las funciones más útiles de Eclipse es el formateo de código automático, mediante la combinación de teclas <strong>Ctrl+Shift+F</strong>. Nosotros escribimos (o pegamos) un churro, con las identaciones mal puestas, espacios sobrantes, etc., y Eclipse nos deja un código limpio, claro y ordenado. Pero es importante para estar cómodos con nuestro IDE que nos produzca código que nos guste. Para ello viene bien echar unos minutos en revisar las opciones de personalización del formateo de código, que no son pocas. Podemos tener varios perfiles, e incluso configurar un perfil distinto para cada proyecto (modificando las preferencias del proyecto concreto, y no las globales). Para personalizarlos creamos uno nuevo o editamos el existente (habrá que guardarlo con otro nombre).</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/format1.png"><img class="aligncenter size-medium wp-image-3699" alt="format1" src="http://androcode.es/wp-content/uploads/2013/02/format1-300x274.png" width="300" height="274" /></a></p>
+<p>Aquí entran muy en juego los gustos de cada uno. Aconsejo mirar todas las opciones, elegir las que nos parezcan mejores, y volver a mirarlas tras llevar un tiempo con ellas para asegurarnos de que estamos cómodos con todas.</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/format2.png"><img class="aligncenter size-medium wp-image-3700" alt="format2" src="http://androcode.es/wp-content/uploads/2013/02/format2-300x257.png" width="300" height="257" /></a></p>
+<p>Os comento como ejemplo las que yo suelo cambiar, que son realmente pocas: En <em>Identation</em> pongo Tab Policy a <em>Tabs Only</em>, y activo <em>Statements within switch body</em>; en <em>Line Wrapping</em> pongo el <em>Maximun line width</em> a un valor alto como 200 para que no me divida las líneas, y activo <em>Never join already wrapped lines</em> por si quiero dividirlas  manualmente; y por último en <em>Comments</em> activo <em>Never join lines</em> para decidir yo los saltos de línea, y pongo el <em>Maximun line width</em> también a un valor como 200. </p>
+<p>Mucho ojo a esta función si trabajamos en grupo con repositorios, o si contribuímos a proyectos de software libre. Debemos adaptarnos a las normas comunes, así que si pensamos dejar que Eclipse formatee nuestro código debemos asegurarnos de respetar dichas normas. No queremos que Git nos marque todo el archivo &#8220;en rojo&#8221; cuando sólo hemos cambiado una línea, ¿verdad?</p>
+<div id="tags"> </div>
+<h1>Etiquetas</h1>
+<p>No muy usadas, pero están ahí para ayudar a organizarnos si las necesitamos. Las etiquetas son comentarios especiales que podemos poner para marcar nuestro código. La más famosa es la etiqueta <strong>TODO</strong>, para dejar anotado algo que tenemos que hacer o cambiar en un futuro. Pero nosotros mismos podemos crear nuestras etiquetas personalizadas. Por ejemplo DEBUG para indicar algo que debemos quitar antes de sacar la aplicación a producción,  asignar tareas a determinadas personas en un grupo, etc. </p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/tags.png"><img class="aligncenter size-medium wp-image-3701" alt="tags" src="http://androcode.es/wp-content/uploads/2013/02/tags-300x278.png" width="300" height="278" /></a></p>
+<p>Luego podemos ver la lista de etiquetas usadas en la vista Tasks (Si no la tenemos se activa en Window &gt; Show View &gt; Tasks)</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/tags2.png"><img class="aligncenter size-full wp-image-3702" alt="tags2" src="http://androcode.es/wp-content/uploads/2013/02/tags2.png" width="684" height="284" /></a></p>
+<div id="codetemplates"> </div>
+<h1>Plantillas de código</h1>
+<p>Eclipse nos permite usar palabras clave para generar automáticamente determinadas estructuras de código, y más aún, crearlas a nuestro gusto. Por ejemplo, uno de los métodos más utilizados en Java es System.out.println() para imprimir texto en la consola; pues nos basta con escribir en el editor &#8220;sysout&#8221; y pulsar el autocompletado (ctrl+espacio) para que nos inserte la línea completa y nos ponga el cursor en la posición del argumento. Lo mismo ocurre con &#8220;try&#8221; para insertar un bloque try-catch.</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/codtemplate12.png"><img class="aligncenter size-full wp-image-3704" alt="codtemplate12" src="http://androcode.es/wp-content/uploads/2013/02/codtemplate12.png" width="529" height="324" /></a></p>
+<p>La lista completa podemos verla en las preferencias, y ahí mismo podemos añadir nuestras propias plantillas. Por ejemplo, podríamos crear una plantilla así para inicializar el método getView() típico del BaseAdapter: </p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/codetemplates3.png"><img class="aligncenter size-medium wp-image-3705" alt="codetemplates3" src="http://androcode.es/wp-content/uploads/2013/02/codetemplates3-300x261.png" width="300" height="261" /></a></p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/codetemplates4.png"><img class="aligncenter size-large wp-image-3706" alt="codetemplates4" src="http://androcode.es/wp-content/uploads/2013/02/codetemplates4-1024x355.png" width="620" height="214" /></a></p>
+<p style="text-align: center">Copiar código</p>
+<p>Y en el editor de código, poniendo la palabra clave con autocompletado, nos genera el código por el que podemos movernos mediante el tabulador. ¡Magia!</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/codetemplates56.png"><img class="aligncenter size-full wp-image-3707" alt="codetemplates56" src="http://androcode.es/wp-content/uploads/2013/02/codetemplates56.png" width="630" height="438" /></a></p>
+<div id="templatesadt"> </div>
+<h1>Plantillas de ADT</h1>
+<p>No hace mucho añadieron al plugin ADT la posibilidad de crear componentes de Android como Actividades para nuestras aplicaciones mediante un <strong>asistente</strong>, que podemos encontrar en el menú <em>File &gt; New</em> bajo la categoría de Android, el cual nos genera el código y recursos que podemos editar fácilmente. Por ejemplo, en el caso de las Actividades nos creará un <strong>layout</strong> y <strong>menú</strong> básicos en xml, la <strong>clase Java</strong> correspondiente con el código para mostrar el layout y el menú, y la entrada necesaria en el <strong>AndroidManifest.xml</strong>. E incluso podemos decirle que nos añada elementos extra de navegación como pestañas, ViewPager y más.</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/templatesadt2.png"><img class="aligncenter size-medium wp-image-3708" alt="templatesadt2" src="http://androcode.es/wp-content/uploads/2013/02/templatesadt2-300x284.png" width="300" height="284" /></a></p>
+<p>Por si fuera poco, un tiempo después añadieron la posibilidad de instalar plantillas personalizadas creadas por nosotros mismos. Yo os recomiendo <a href="https://github.com/jgilfelt/android-adt-templates">estas plantillas </a>creadas por Jeff Gilfelt para crear Actividades compatibles con la magnífica librería <strong><a title="Introducción a ActionBarSherlock" href="http://androcode.es/2012/03/introduccion-a-actionbarsherlock/">ActionBar Sherlock</a></strong>, entre otras. En el repositorio tenéis más información sobre para qué es cada uno de los elementos que añade. Además, instalar las plantillas es tan sencillo como pegarlas en la carpeta <strong>/extras/templates/</strong> del SDK.</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/02/templatesadt4.png"><img class="aligncenter size-medium wp-image-3709" alt="templatesadt4" src="http://androcode.es/wp-content/uploads/2013/02/templatesadt4-198x300.png" width="198" height="300" /></a></p>
+<p>Tenéis más información sobre cómo crear plantillas en <a href="https://plus.google.com/113735310430199015092/posts/XTKTamk4As8">este post de Google+</a>. ¿Se os ocurren más plantillas útiles? ¿Os animáis a hacerlas y compartirlas? <img src='http://androcode.es/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' /> </p>
+<p>Y hasta aquí los cambios que os sugerimos para vuestro IDE, espero que algunos os resulten tan útiles como a mi. En futuras entregas intentaremos contar otros trucos a la hora de usar Eclipse. Si tenéis más sugerencias relacionadas son bienvenidas en los comentarios  <img src='http://androcode.es/wp-includes/images/smilies/icon_wink.gif' alt=';-)' class='wp-smiley' /> </p>
+<p>Fuentes: <a href="http://www.vogella.com/articles/Eclipse/article.html#preferences">Vogella</a> y cosecha propia</p>
+]]></content:encoded>
+			<wfw:commentRss>http://androcode.es/2013/02/como-hacer-mas-comodo-el-trabajo-con-eclipse/feed/
+			</wfw:commentRss>
+			<slash:comments>1</slash:comments>
+		</item>
+		<item>
+			<title>ADA Framework Tournament</title>
+			<link>http://androcode.es/2013/01/ada-framework-tournament/</link>
+			<comments>http://androcode.es/2013/01/ada-framework-tournament/#comments</comments>
+			<pubDate>Thu, 24 Jan 2013 18:04:41 +0000</pubDate>
+			<dc:creator>Sloy</dc:creator>
+			<category><![CDATA[Noticias]]></category>
+			<category><![CDATA[ADA Framework]]></category>
+			<category><![CDATA[Concurso]]></category>
+			<category><![CDATA[Librerias]]></category>
+			<category><![CDATA[SQLite]]></category>
+
+			<guid isPermaLink="false">http://androcode.es/?p=3656</guid>
+			<description><![CDATA[En AndroCode ya os hemos hablado más de una vez sobre ADA Framework (1 y 2), una librería con la que implementar fácilmente persistencia en nuestras aplicaciones. Pues hoy os hablamos otra vez de ella para contaros que los chicos de Mob&#38;Me se han propuesto organizar una pequeña competición usando dicha librería, con la que &#8230; </p><p><a class="more-link block-button" href="http://androcode.es/2013/01/ada-framework-tournament/">Continuar leyendo</a>]]></description>
+			<content:encoded><![CDATA[<p>En AndroCode ya os hemos hablado más de una vez sobre ADA Framework (<a href="http://androcode.es/2012/03/persistencia-de-aplicaciones-con-ada-framework/">1</a> y <a href="http://androcode.es/2012/09/persistencia-de-aplicaciones-con-ada-framework-parte-2/">2</a>), una librería con la que implementar fácilmente persistencia en nuestras aplicaciones. Pues hoy os hablamos otra vez de ella para contaros que los chicos de <strong>Mob&amp;Me</strong> se han propuesto organizar una pequeña competición usando dicha librería, con la que podemos ganar un <strong>TankBot</strong>, el &#8220;pequeño tanque&#8221; controlable con un smartphone.</p>
+<p><img class="aligncenter size-full wp-image-3657" alt="androcode_adaframework_tournament" src="http://androcode.es/wp-content/uploads/2013/01/androcode_adaframework_tournament.png" width="662" height="290" /></p>
+<p>El reto es bastante sencillo: implementar el modelo de datos que nos sugieren, que consta de 6 clases, usando ADA Framework. De entre todas las soluciones válidas escogerán un ganador por sorteo, que se llevará el preciado TankBot. Tenéis hasta el próximo domingo día 27 para participar, y el ganador se anunciará en directo mediante un Hangout de Google+ el mismo día a las 18:00 hora española.</p>
+<p>Animaos que no es nada complicado y así aprovecháis para practicar con la librería.</p>
+<p>Bases y más información: <a href="http://mobandme.com/ada-framework-tournament/">Mob&amp;Me</a><br />TankBot: <a href="http://www.mydeskpets.com/shop/tankbot/">DeskPets</a></p>
+]]></content:encoded>
+			<wfw:commentRss>http://androcode.es/2013/01/ada-framework-tournament/feed/
+			</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		</item>
+		<item>
+			<title>Cómo añadir datos precargados en tus aplicaciones</title>
+			<link>http://androcode.es/2013/01/como-anadir-datos-precargados-en-tus-aplicaciones/</link>
+			<comments>http://androcode.es/2013/01/como-anadir-datos-precargados-en-tus-aplicaciones/#comments</comments>
+			<pubDate>Wed, 23 Jan 2013 09:37:19 +0000</pubDate>
+			<dc:creator>FedeProEx</dc:creator>
+			<category><![CDATA[Artículos]]></category>
+			<category><![CDATA[Android]]></category>
+			<category><![CDATA[Articulos]]></category>
+			<category><![CDATA[Codigo Fuente]]></category>
+			<category><![CDATA[Librerias]]></category>
+			<category><![CDATA[Programación]]></category>
+			<category><![CDATA[SDK]]></category>
+			<category><![CDATA[SQLite]]></category>
+
+			<guid isPermaLink="false">http://androcode.es/?p=3622</guid>
+			<description><![CDATA[Hay ocasiones en las que por alguna razón necesitamos incluir una serie de datos precargados en nuestra aplicación android, de forma que cuando el usuario instale la aplicación pueda empezar a disfrutar de contenido sin necesidad de tener que depender de un servicio externo. En el siguiente artículo os plantearemos una serie de alternativas sobre &#8230; </p><p><a class="more-link block-button" href="http://androcode.es/2013/01/como-anadir-datos-precargados-en-tus-aplicaciones/">Continuar leyendo</a>]]></description>
+			<content:encoded><![CDATA[<p>Hay ocasiones en las que por alguna razón necesitamos incluir una serie de datos precargados en nuestra aplicación android, de forma que cuando el usuario instale la aplicación pueda empezar a disfrutar de contenido sin necesidad de tener que depender de un servicio externo.</p>
+<p>En el siguiente artículo os plantearemos una serie de alternativas sobre cómo partir de una base de datos con datos existentes. No existe una opción única o mejor que todas, ya que cada una de las soluciones aquí presentadas se adaptan a distintas situaciones.</p>
+<p><span id="more-3622"></span></p>
+<h2>Opción 1 &#8211; Carga manual al crear la base de datos</h2>
+<p>Si los datos son pocos y éstos no van a cambiar mucho la forma más sencilla es insertarlos manualmente durante la creación de la base de datos.</p>
+<p>Al trabajar con <a href="http://developer.android.com/training/basics/data-storage/databases.html">bases de datos en android</a>, tendremos una clase que extiende de <strong>SQLiteOpenHelper</strong> y que será la encargada de generar la base de datos. El método <strong>onCreate</strong> será el lugar donde podremos insertar los valores, de esta forma nos aseguramos que se hará siempre que se cree la base de datos.</p>
+<p>Si estamos trabajando directamente con <strong>SQLiteOpenHelper</strong> (no estamos utilizando una librería externa de gestión de base de datos) nuestro método <strong>onCreate</strong> podría quedar de la siguiente forma:</p>
+<pre class="brush: java; gutter: true; first-line: 1">    public void onCreate(SQLiteDatabase db) {
+        // Sentencias de creación de base de datos
+        // db.execSQL("CREATE TABLE ...");
+        db.beginTransaction();
+        try {
+            ContentValues values = new ContentValues();
+            for (int i = 0; i &lt; NOMRES.length; i++) {
+                values.put(&quot;nombre&quot;, NOMBRES[i]);
+                values.put(&quot;edad&quot;, EDADES[i]);
+                db.insert(&quot;usuarios&quot;, null, values);
+            }
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+        }
+    }
+</pre>
+<p>Como vemos el funcionamiento es muy sencillo. Los datos podrían venir de cualquier otra clase de nuestro código en lugar de arrays (en el ejemplo NOMBRES y EDADES). Lo importante aquí empieza en la línea 4, declaramos que vamos a iniciar una transacción, insertamos los datos, declaramos que hemos insertado los datos correctamente y finalizamos la transacción. Se utilizan transacciones para que la inserción de datos se haga de una forma más rápida.</p>
+<p>Si estamos utilizando alguna librería de gestión de base de datos siempre tendremos la posibilidad de ejecutar código durante la creación de la base de datos. ORMLite por ejemplo extiende de <a href="http://ormlite.com/android/examples/DatabaseHelper.java">OrmLiteSqliteOpenHelper</a> que también incluye el método <strong>onCreate</strong>.</p>
+<h2>Opción 2 &#8211; Cargar script SQL al crear la base de datos</h2>
+<p>Una segunda opción y quizás la más recomendable después de la <strong>Opción 4</strong> consiste en crearnos un fichero SQL de inserción, leerlo e importarlo en el <strong>onCreate</strong>. El fichero podemos crearlo en el directorio <em>assets</em> y tendría una sentencia SQL por línea. Por ejemplo:</p>
+<pre>
+
+<div class="codecolorer-container text default" style="overflow:auto;white-space:nowrap;border:1px solid #9F9F9F;width:435px;"><table cellspacing="0" cellpadding="0"><tbody><tr><td style="padding:5px;text-align:center;color:#888888;background-color:#EEEEEE;border-right: 1px solid #9F9F9F;font: normal 12px/1.4em Monaco, Lucida Console, monospace;"><div>1<br />2<br />3<br />4<br />5<br /></div></td><td><div class="text codecolorer" style="padding:5px;font:normal 12px/1.4em Monaco, Lucida Console, monospace;white-space:nowrap">INSERT INTO usuarios (nombre, edad) VALUES ('usuario1', 18);<br />
+INSERT INTO usuarios (nombre, edad) VALUES ('usuario2', 48);<br />
+INSERT INTO usuarios (nombre, edad) VALUES ('usuario3', 30);<br />
+INSERT INTO usuarios (nombre, edad) VALUES ('usuario4', 55);<br />
+INSERT INTO usuarios (nombre, edad) VALUES ('usuario5', 16);</div></td></tr></tbody></table></div>
+
+</pre>
+<p>Si suponemos que el fichero se ha grabado en el directorio <em>assets</em> con el nombre <em>import.sql</em> nuestro método <strong>onCreate</strong> del <strong>SQLiteOpenHelper</strong> quedaría de la siguiente forma:</p>
+<pre class="brush: java; gutter: true; first-line: 1">    public void onCreate(SQLiteDatabase db) {
+        // Sentencias de creación de base de datos
+        // db.execSQL("CREATE TABLE ...");
+        InputStream is = null;
+        try {
+             is = mContext.getAssets().open("import.sql");
+             if (is != null) {
+                 db.beginTransaction();
+                 BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+                 String line = reader.readLine();
+                 while (!TextUtils.isEmpty(line)) {
+                     db.execSQL(line);
+                     line = reader.readLine();
+                 }
+                 db.setTransactionSuccessful();
+             }
+        } catch (Exception ex) {
+            // Muestra log             
+        } finally {
+            db.endTransaction();
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    // Muestra log
+                }                
+            }
+        }
+    }
+</pre>
+<p>Como vemos resulta muy sencillo. La variable <strong>mContext</strong> podemos inicializarla en el constructor del <strong>SQLiteOpenHelper</strong>. Luego sólo tenemos que cargar el fichero, leerlo línea a línea e ir ejecutando las sentencias. Esto mismo podría valernos para el método <strong>onUpgrade</strong>, con un fichero SQL con sentencias de actualización de base de datos.</p>
+<p>Esta opción es muy recomendable cuando tenemos un número considerable de datos, pero hay que tener en cuenta que es posible que se ejecute en el hilo principal (por ejemplo porque inicializamos el <em>helper</em> en una activity) llegándolo a bloquear si tarda mucho.</p>
+<p>Al igual que antes, la mayoría de los gestores de base de datos proporcionan el método <strong>onCreate</strong> donde podemos realizar esta misma tarea.</p>
+<h2>Opción 3 &#8211; Copiar una base de datos creada con anterioridad</h2>
+<p>Esta opción y la última son las aconsejables cuando el volumen de datos es muy grande. No obstante, aunque la opción 3 pueda llegar a ser la más cómoda es, sin lugar a dudas, la que más problemas y quebraderos de cabeza puede darnos. No es la más recomendable, sin embargo es una solución posible y como tal os la presentamos en el artículo.</p>
+<p>La idea se basa en crear una base de datos <em>SQLite</em>, insertar datos mediante un programa externo en nuestro ordenador, empaquetarla en el directorio <em>assets</em> de nuestra aplicación y en la creación de la base de datos darle el cambiazo a la recién creada por la nuestra.</p>
+<p>Existen multitud de recursos sobre cómo realizar esta tarea, basta con una simple <a href="https://www.google.es/search?q=Using+your+own+SQLite+database+in+Android">búsqueda en Google</a> para encontrar alguno de los artículos. A continuación vamos a comentar los pasos por encima.</p>
+<h3>Paso 1 &#8211; Preparar la base de datos</h3>
+<p>El primer paso es preparar nuestra base de datos. Podemos utilizar la <a href="http://developer.android.com/tools/help/sqlite3.html">herramienta sqlite3</a> que incorpora el SDK de android o algún editor gráfico como <a href="http://sourceforge.net/projects/sqlitebrowser/">SQLite Database Browser</a> o <a href="http://sqliteman.com/">SQLiteman</a>. Lo importante es que nuestra base de datos debe tener una tabla con el nombre <strong>android_metadata</strong> con una única columna de nombre <strong>locale</strong> y con una fila con el valor <strong>en_US</strong>. Podemos crearla con las siguientes dos sentencias SQL:</p>
+<pre>
+
+<div class="codecolorer-container text default" style="overflow:auto;white-space:nowrap;border:1px solid #9F9F9F;width:435px;"><table cellspacing="0" cellpadding="0"><tbody><tr><td style="padding:5px;text-align:center;color:#888888;background-color:#EEEEEE;border-right: 1px solid #9F9F9F;font: normal 12px/1.4em Monaco, Lucida Console, monospace;"><div>1<br />2<br /></div></td><td><div class="text codecolorer" style="padding:5px;font:normal 12px/1.4em Monaco, Lucida Console, monospace;white-space:nowrap">CREATE TABLE android_metadata (locale TEXT DEFAULT 'en_US');<br />
+INSERT INTO android_metadata VALUES ('en_US');</div></td></tr></tbody></table></div>
+
+</pre>
+<p>Una vez hecho esto creamos las tablas de nuestra aplicación e insertamos los datos necesarios.</p>
+<h3>Paso 2 &#8211; Copiar la base de datos en el directorio assets</h3>
+<p>Este paso, a priori sencillo, puede darnos más de un problema. El motivo es que si nuestra base de datos ocupa más de 1MB, al crear el APK la base de datos estará en el directorio <em>assets</em> pero comprimida y al leerla nos dará un error.</p>
+<p>La herramienta <em>aapt</em> ignora para su compresión algunos recursos en base a su extensión, como por ejemplo mp3 o avi, porque se supone que estos ficheros ya están comprimidos. Por tanto, tenemos dos formas de evitar que la herramienta <em>aapt</em> comprima nuestro fichero de base de datos al crear el APK:</p>
+<ul>
+<li><span style="line-height: 12px"><strong>Forma fácil</strong>: Le cambiamos la extensión a .mp3</span></li>
+<li><strong>Forma correcta</strong>: Le pasamos el parámetro &#8216;-0&#8242; (cero) seguido de la extensión &#8216;db&#8217; (o la extensión del fichero de nuestra base de datos si es otra) a la herramienta cuando vayamos a crear el APK</li>
+</ul>
+<h3>Paso 3 &#8211; Inicializar la base de datos y copiar la nuestra</h3>
+<p>El último paso consiste en modificar nuestra clase <strong>SQLiteOpenHelper</strong> para que realice los siguientes pasos:</p>
+<ol>
+<li><span style="line-height: 12px">Compruebe si la base de datos está inicializada</span></li>
+<li>Si no lo está, inicialice y la sobrescriba con la base de datos del directorio assets</li>
+</ol>
+<p>Como dijimos antes, existen varias páginas que explican cómo realizar esta tarea. A continuación podemos ver una posible implementación del <strong>SQLiteOpenHelper</strong>. </p>
+<pre class="brush: java; gutter: true; first-line: 1">import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class DBHelper extends SQLiteOpenHelper {
+    
+    public static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_NAME = "basededatos.db";
+    
+    private Context mContext;
+    
+    public DBHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        mContext = context;
+    }
+    
+    public void createDataBase() throws IOException {
+        File pathFile = mContext.getDatabasePath(DATABASE_NAME);
+        boolean dbExist = checkDataBase(pathFile.getAbsolutePath()); 
+        if(!dbExist) {
+            this.getReadableDatabase(); 
+            try {
+                copyDataBase(pathFile); 
+            } catch (IOException e) { 
+                // Error copying database 
+            }
+        } 
+    }
+    
+    private boolean checkDataBase(String path) { 
+        SQLiteDatabase checkDB = null; 
+        try {            
+            checkDB = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY); 
+        } catch(Exception e){
+             // Database doesn't exist 
+        } 
+        if(checkDB != null) { 
+            checkDB.close(); 
+        } 
+        return checkDB != null;
+    }
+    
+    private void copyDataBase(File pathFile) throws IOException { 
+        InputStream myInput = mContext.getAssets().open("basededatos.db");
+        OutputStream myOutput = new FileOutputStream(pathFile);
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = myInput.read(buffer)) &gt; 0) {
+            myOutput.write(buffer, 0, length);
+        } 
+        myOutput.flush();
+        myOutput.close();
+        myInput.close(); 
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        
+    }
+
+}
+</pre>
+<p>Siempre que queramos hacer uso de los métodos <strong>getReadableDatabase()</strong> y <strong>getWritableDatabase()</strong> tendríamos que llamar al método <strong>createDatabase()</strong> que se encarga de crear la base de datos si ésta no existe (si ya existe no hace nada).</p>
+<div class="warning_block"><strong>¡Excepciones!</strong>: Si vas a utilizar este código en tu aplicación ten en cuenta las capturas de excepciones, deberás actuar en consecuencia.</div>
+<h2>Opción 3&#8242; &#8211; Utilizar android-sqlite-asset-helper</h2>
+<p>La <a href="https://github.com/jgilfelt/android-sqlite-asset-helper">librería android-sqlite-asset-helper</a> nos facilita la implementación mediante la opción 3 pero con la ventaja de que nos ahorra prácticamente todo el trabajo. Por contra, perderemos el control de qué está ocurriendo.</p>
+<p>Para utilizarla debemos seguir los siguientes pasos:</p>
+<ol>
+<li><span style="line-height: 12px">Copiar <a href="https://github.com/jgilfelt/android-sqlite-asset-helper/blob/master/lib/android-sqlite-asset-helper.jar?raw=true">android-sqlite-asset-helper.jar</a> en nuestro directorio libs</span></li>
+<li>Crear nuestro <em>helper</em> extendiendo de <strong>SQLiteAssetHelper</strong></li>
+<li>Llamar al &#8220;super constructor&#8221; pasándole el nombre de la base de datos.</li>
+</ol>
+<p>Por ejemplo, si invocamos el super constructor de la siguiente forma:</p>
+<pre class="brush: java; gutter: true; first-line: 1">super(context, "mibasededatos", null, 1);</pre>
+<p>Tendremos que poner nuestra base de datos comprimida en:</p>
+<pre>
+
+<div class="codecolorer-container text default" style="overflow:auto;white-space:nowrap;border:1px solid #9F9F9F;width:435px;"><table cellspacing="0" cellpadding="0"><tbody><tr><td style="padding:5px;text-align:center;color:#888888;background-color:#EEEEEE;border-right: 1px solid #9F9F9F;font: normal 12px/1.4em Monaco, Lucida Console, monospace;"><div>1<br /></div></td><td><div class="text codecolorer" style="padding:5px;font:normal 12px/1.4em Monaco, Lucida Console, monospace;white-space:nowrap">assets/databases/mibasededatos.zip</div></td></tr></tbody></table></div>
+
+</pre>
+<p>Simplemente con esto, la librería gestionará la importación de la base de datos en el caso de que no existiera.</p>
+<h2>Opción 4 &#8211; Estándar</h2>
+<p>¿Pero qué ocurre si los datos tardan mucho en cargar?, o ¿y si los leo desde un servicio web externo?, o ¿y si me los pasan en XML o JSON?. Bueno, si estás en una de las situaciones anteriores una solución como esta es la más indicada. Es la opción más visual (de hecho es la única que cuenta con vistas) y podemos verla reflejada en el siguiente boceto:</p>
+<p style="text-align: center"><a href="http://androcode.es/wp-content/uploads/2013/01/1.-Home.png"><img class=" wp-image-3633 aligncenter" alt="Mockup carga de datos" src="http://androcode.es/wp-content/uploads/2013/01/1.-Home.png" width="497" height="288" /></a></p>
+<p>La  idea es sencilla, al entrar en nuestra pantalla principal comprobamos si están los datos cargados. Si no lo están cargamos una vista como la del boceto e iniciamos una tarea de carga.</p>
+<p>El código aquí no tiene sentido, pues existen muchísimas formas de conseguir este comportamiento y depende, entre otras cosas, de nuestra forma de conectarnos a la base de datos.</p>
+<p>Esta forma de resolver la carga inicial está especialmente indicada cuando tenemos un volumen de datos bastante considerable y además los datos estén en un formato no impuesto por nosotros, como por ejemplo XML o fichero de texto.</p>
+<p>La idea de esta aproximación es ejecutar la tarea en un segundo plano, por lo que si la importación tarda más de un par se segundos de ejecución esta puede ser una buena opción. Podría implementarse fácilmente con una <a href="http://developer.android.com/reference/android/os/AsyncTask.html">AsyncTask</a>, aunque los detalles ya dependen de vuestro caso.</p>
+<p>Las características de esta aproximación son:</p>
+<ol>
+<li>Se adapta a cualquier cantidad de datos. Si la importación tarda más de un minuto no es problema, pues no estamos bloqueando el hilo principal de ejecución.</li>
+<li>Tendremos que diseñar los layouts, gestionar la carga en segundo plano y actualizar la vista cuando sea necesario.</li>
+</ol>
+<h2>Conclusiones</h2>
+<p>Como vemos es relativamente sencillo incorporar unos datos precargados a nuestras aplicaciones android.</p>
+<p>En ese artículo se han presentado 4 +1 formas de realizar esta tarea. Y vosotros, ¿utilizáis otros mecanismos?, si habéis utilizado alguna de las propuestas, ¿cuál ha sido vuestra experiencia?.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://androcode.es/2013/01/como-anadir-datos-precargados-en-tus-aplicaciones/feed/
+			</wfw:commentRss>
+			<slash:comments>1</slash:comments>
+		</item>
+		<item>
+			<title>Cómo configurar el emulador de GoogleTV en Windows/OS X</title>
+			<link>http://androcode.es/2013/01/como-configurar-el-emulador-de-googletv-en-windowsos-x/</link>
+			<comments>http://androcode.es/2013/01/como-configurar-el-emulador-de-googletv-en-windowsos-x/#comments</comments>
+			<pubDate>Sat, 19 Jan 2013 14:18:01 +0000</pubDate>
+			<dc:creator>Fernando F. Gallego</dc:creator>
+			<category><![CDATA[Tutoriales]]></category>
+			<category><![CDATA[ADV]]></category>
+			<category><![CDATA[Android]]></category>
+			<category><![CDATA[Emulador]]></category>
+			<category><![CDATA[GoogleTV]]></category>
+			<category><![CDATA[principiante]]></category>
+			<category><![CDATA[SDK]]></category>
+
+			<guid isPermaLink="false">http://androcode.es/?p=3571</guid>
+			<description><![CDATA[Pongamos por caso que quieres desarrollar una aplicación para Google TV, que como sabes, es una forma de correr aplicaciones Android en tu tele a través de un hardware externo o televisor compatible. Tal vez hayas visto en el SDK Manager que para Android 3.2 ha salido un addon llamado Google TV addon e incluso &#8230; </p><p><a class="more-link block-button" href="http://androcode.es/2013/01/como-configurar-el-emulador-de-googletv-en-windowsos-x/">Continuar leyendo</a>]]></description>
+			<content:encoded><![CDATA[<p><img class="aligncenter size-full wp-image-3612" alt="androcode_gtv_emu" src="http://androcode.es/wp-content/uploads/2013/01/androcode_gtv_emu.png" width="662" height="290" />Pongamos por caso que quieres desarrollar una aplicación para Google TV, que como sabes, es una forma de correr aplicaciones Android en tu tele a través de un hardware externo o televisor compatible.</p>
+<p>Tal vez hayas visto en el SDK Manager que para Android 3.2 ha salido un addon llamado Google TV addon e incluso que lo hayas instalado para probarlo y que por desgracia no hayas sido capaz de conseguir que arranque.</p>
+<p>Pues hoy os voy a explicar la manera de hacerlo y así poder probar las aplicaciones que desarrollamos en un entorno similar a un Google TV.</p>
+<p><span id="more-3571"></span></p>
+<p>Lo primero es bajarse el addon del SDK Manager, está dentro de la api 13, así que descargamos el SDK Platform, las Google APIs y el Google TV Addon.</p>
+<p>Una vez descargado abrimos el AVD Manager y nos metemos en la pestaña de Device Definitions para crear un nuevo dispositivo.</p>
+<p>Debemos poner los ajustes como en esta imagen:</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/01/ScreenShot126.png"><img class="alignnone size-full wp-image-3592" alt="" src="http://androcode.es/wp-content/uploads/2013/01/ScreenShot126.png" width="665" height="501" /></a></p>
+<p>Si queremos poner la pantalla como 1080p entonces la resolución que hay que poner es <strong>1920×1080</strong> y cambiar la densidad de<strong> tvdpi </strong>a<strong> xhdpi.</strong></p>
+<p>Aceptamos y volvemos a la pestaña de Android Virtual Devices y creamos uno nuevo con los siguientes ajustes:</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/01/ScreenShot127.png"><img class="alignnone size-full wp-image-3591" alt="" src="http://androcode.es/wp-content/uploads/2013/01/ScreenShot127.png" width="416" height="675" /></a></p>
+<p>Es importante no poner más de <strong>512 Mb de RAM</strong> porque sino, al arrancar el emulador con este AVD, dará un error &#8220;<span style="font-family: Consolas, Monaco, monospace">Failed to allocate memory: 8&#8243;</span></p>
+<p>También puede que os aparezca este error :</p>
+<p><em>emulator: Failed to open the HAX device! HAX is not working and emulator runs in emulation mode emulator: Open HAX device failed</em></p>
+<p>En este caso debemos irnos a la carpeta <em>&#8220;/extras/intel/Hardware_Accelerated_Execution_Manager/&#8221;</em> dentro de donde hayamos instalado el Android SDK y allí instalar la herramienta <strong>Intel Hardware Execution Manager.</strong></p>
+<p>Después de hacer esto ya podremos arrancar nuestro emulador de Google TV.</p>
+<p>Recordad que las teles no tienen pantallas táctiles y se ven desde 10m. así que la navegación e interfaz de vuestras apps deberán ser diferentes pero de eso ya hablaremos en otro post.</p>
+<p><a href="http://androcode.es/wp-content/uploads/2013/01/ScreenShot128.png"><img class="alignnone size-large wp-image-3600" alt="GoogleTV Emulator" src="http://androcode.es/wp-content/uploads/2013/01/ScreenShot128-1024x511.png" width="620" height="309" /></a></p>
+]]></content:encoded>
+			<wfw:commentRss>http://androcode.es/2013/01/como-configurar-el-emulador-de-googletv-en-windowsos-x/feed/
+			</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		</item>
+		<item>
+			<title>Implementación del menú lateral (SlidingMenu)</title>
+			<link>http://androcode.es/2013/01/implementacion-del-menu-lateral/</link>
+			<comments>http://androcode.es/2013/01/implementacion-del-menu-lateral/#comments</comments>
+			<pubDate>Thu, 03 Jan 2013 09:10:03 +0000</pubDate>
+			<dc:creator>Fernando F. Gallego</dc:creator>
+			<category><![CDATA[Tutoriales]]></category>
+			<category><![CDATA[Android]]></category>
+			<category><![CDATA[intermedio]]></category>
+			<category><![CDATA[Librerias]]></category>
+			<category><![CDATA[Menú Lateral]]></category>
+			<category><![CDATA[Programación]]></category>
+			<category><![CDATA[SlidingMenu]]></category>
+
+			<guid isPermaLink="false">http://androcode.es/?p=3540</guid>
+			<description><![CDATA[  Android ha cambiado mucho desde sus inicios hasta ahora, diferentes patrones de diseño han ido emergiendo a lo largo de su historia para hacer más conveniente el uso de pantallas táctiles. Ya no sirven convenciones como las que existían en los teléfonos de botones o en las ya obsoletas PDAs. Las pantallas que se &#8230; </p><p><a class="more-link block-button" href="http://androcode.es/2013/01/implementacion-del-menu-lateral/">Continuar leyendo</a>]]></description>
+			<content:encoded><![CDATA[<p style="text-align: left"><a href="http://androcode.es/wp-content/uploads/2012/12/navegacion-lateral.jpg"><img class="size-full wp-image-3559 aligncenter" style="border: 0px" title="navegacion-lateral" alt="" src="http://androcode.es/wp-content/uploads/2012/12/navegacion-lateral.jpg" width="567" height="300" /></a></p>
+<p style="text-align: left"> </p>
+<p style="text-align: left">Android ha cambiado mucho desde sus inicios hasta ahora, diferentes patrones de diseño han ido emergiendo a lo largo de su historia para hacer más conveniente el uso de pantallas táctiles. Ya no sirven convenciones como las que existían en los teléfonos de botones o en las ya obsoletas PDAs.</p>
+<p style="text-align: left">Las pantallas que se pueden tocar con los dedos requieren otros mecanismos para poder interactuar con ellas de forma cómoda. Al principio Google propuso el patrón dashboard para navegar entre diferentes partes independientes de la aplicación, partes que se pudieran considerar tareas distintas dentro de la misma actividad, de modo que el usuario pulsaba un botón &#8220;inicio&#8221; para volver al dashboard de la aplicación y desde allí acceder a otra parte de la misma. Pongamos por ejemplo la aplicación antigua de twitter, se presentaba un dashboard desde el que podías navegar entre tu timeline, menciones, mensajes directos, listas, etc.</p>
+<p style="text-align: left"> </p>
+<p style="text-align: left"><img class="aligncenter" style="border: 0px" alt="Dashboard del antiguo twitter" src="http://3.bp.blogspot.com/_GTM_W5mVPTU/S-rlV2NLU0I/AAAAAAAAAD0/fQUmdTS6cdA/s1600/home01.png" width="288" height="480" /></p>
+<p style="text-align: left"> </p>
+<p style="text-align: left">Con la llegada de Honeycomb, este patrón quedó obsoleto a favor de un menú desplegable en la action bar para poder navegar entre distintas tareas de una misma aplicación sin pasar por una pantalla intermedia. Pero este patrón no ha llegado a calar muy hondo porque, por lo menos a mi, me resulta extraño, y no está claro si es para cambiar el modo de visualización, cambiar de tarea, etc.</p>
+<p style="text-align: left">Es por eso que recientemente se ha empezado a adoptar el patrón del menú lateral. Empezó siendo la aplicación de <a title="Facebook en Google Play" href="https://play.google.com/store/apps/details?id=com.facebook.katana&amp;referrer=utm_source%3Dandrocode.es%26utm_medium%3Dblog-post" target="_blank">Facebook</a> la que lo introdujo por primera vez de forma masiva (¡ni siquiera era una aplicación nativa!) y poco a poco se fue popularizando. Ahora lo vemos en la app de <a title="Google+ en Google Play" href="https://play.google.com/store/apps/details?id=com.google.android.apps.plus&amp;referrer=utm_source%3Dandrocode.es%26utm_medium%3Dblog-post" target="_blank">Google+</a>, <a title="Evernote en Google Play" href="https://play.google.com/store/apps/details?id=com.evernote&amp;referrer=utm_source%3Dandrocode.es%26utm_medium%3Dblog-post" target="_blank">Evernote</a>, <a title="Spotify en Google Play" href="https://play.google.com/store/apps/details?id=com.spotify.mobile.android.ui&amp;referrer=utm_source%3Dandrocode.es%26utm_medium%3Dblog-post" target="_blank">Spotify</a> y muchas otras, por la flexibilidad que ofrece. No solo nos vale para mostrar una lista de cosas que podemos hacer con la aplicación, sino que muchas veces integra otras opciones como los favoritos, buscador, accesos directos en forma de rejilla, y prácticamente lo que queramos incluir ya que es un layout como otro cualquiera. Al final Google ha decidido integrarlo como un patrón de interfaz más en su <a title="Elementos del ActionBar" href="http://developer.android.com/design/patterns/actionbar.html#elements" target="_blank">guía de estilo</a> aunque no ofrece ningún componente (aún) para implementarlo.</p>
+<p style="text-align: left"><a title="Cyril Mottier en Google+" href="https://plus.google.com/118417777153109946393/posts" target="_blank">Cyril Mottier</a> lo integró magistralmente en su aplicación <a title="Prixing en Google Play" href="https://play.google.com/store/apps/details?id=fr.epicdream.beamy&amp;referrer=utm_source%3Dandrocode.es%26utm_medium%3Dblog-post" target="_blank">Prixing</a> y en su <a title="The making of Prixing #1" href="http://android.cyrilmottier.com/?p=658" target="_blank">blog</a> nos explica cómo lo hizo a un nivel teórico, y ha sido Jeremy Feinstein el que ha creado la librería de menú lateral más usada y es la que os voy a explicar aquí.</p>
+<p style="text-align: left"> </p>
+<p style="text-align: left"><span id="more-3540"></span></p>
+<p style="text-align: left">Lo primero es descargarnos la <a title="Librería SlidingMenu en github" href="https://github.com/jfeinstein10/SlidingMenu" target="_blank">librería SlidingMenu de github</a> (es una gozada tener todas estas estupendas librerías completamente libres) .</p>
+<p style="text-align: left">Enlazamos la librería a nuestro proyecto en las propiedades del proyecto &gt; android &gt; Add library.</p>
+<p style="text-align: left">Luego, tenemos tres formas de añadir un menú lateral, una es heredando de la clase SlidingActivity de la librería en vez de la clase Activity u otra, de esta manera tendremos los métodos del menú integrados en la actividad. Si usamos <a title="Introducción a ActionBarSherlock" href="http://androcode.es/2012/03/introduccion-a-actionbarsherlock/" target="_blank">ActionBarSherlock</a> no podremos cambiar la actividad de la que heredamos, pero podemos irnos a la clase SlidingActivity (o SlidingFragmentActivity si usamos fragments) de la librería y hacer que herede de SherlockActivity (o de SherlockFragmentActivity). Para esto tendremos que enlazar tambien la <a title="ActionBarSherlock" href="http://actionbarsherlock.com/" target="_blank">librería ActionBarSherlock</a> a la librería SlidingMenu.</p>
+<p style="text-align: left">Otra forma de integrar un menú lateral es via layout, añadiendo a nuestro layout una view y configurar los atributos de nuestro menú y añadir ahí las vistas que queramos en nuestro menú lateral. Este método ofrece algunas posibilidades extra como por ejemplo, añadir un menú lateral a una fila de una lista (¡esto debe molar mucho!). Además de esta forma podemos indicar en los archivos de recursos algunas dimensiones dependiendo de la orientación de la pantalla o la densidad de esta. Éstas dimensiones pueden ser el margen que queda visible, tamaño de la sombra, etc. Un ejemplo sería:</p>
+<p style="text-align: left"> </p>
+<pre class="brush: xml; gutter: true; first-line: 1">&lt;com.slidingmenu.lib.SlidingMenu
+    xmlns:sliding="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/slidingmenulayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    sliding:viewAbove="@layout/YOUR_ABOVE_VIEW"
+    sliding:viewBehind="@layout/YOUR_BEHIND_BEHIND"
+    sliding:touchModeAbove="margin|fullscreen"
+    sliding:behindOffset="@dimen/YOUR_OFFSET"
+    sliding:behindWidth="@dimen/YOUR_WIDTH"
+    sliding:behindScrollScale="@dimen/YOUR_SCALE"
+    sliding:shadowDrawable="@drawable/YOUR_SHADOW"
+    sliding:shadowWidth="@dimen/YOUR_SHADOW_WIDTH"
+    sliding:fadeEnabled="true|false"
+    sliding:fadeDegree="float"
+    sliding:selectorEnabled="true|false"
+    sliding:selectorDrawable="@drawable/YOUR_SELECTOR"/&gt;
+</pre>
+<p style="text-align: left"> </p>
+<p style="text-align: left">La tercera forma es crear el menú desde código instanciándolo con el constructor, inicializar todas las propiedades de presentación y añadirlo a la activity, de forma que lo podemos incorporar dinámicamente a cualquier actividad o incluso añadir distintos menús en función de otros parámetros (por ejemplo si el usuario está logueado o no).</p>
+<p style="text-align: left">Además la propia librería nos permite decidir si queremos desplazar la ActionBar al abrir el menú o solo el contenido debajo de ésta, para eso podemos indicar en el parámetro flag del método attachToActivity como SlidingMenu.SLIDING_WINDOW si queremos deslizar todo o SlidingMenu.SLIDING_CONTENT si queremos sólo el contenido.</p>
+<p style="text-align: left">Por ejemplo:</p>
+<p style="text-align: left"> </p>
+<pre class="brush: java; gutter: true; first-line: 1">public class SlidingExample extends Activity {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setTitle(R.string.attach);
+        // set the content view
+        setContentView(R.layout.content);
+        // configure the SlidingMenu
+        SlidingMenu menu = new SlidingMenu(this);
+        menu.setMode(SlidingMenu.LEFT);
+        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        menu.setShadowWidthRes(R.dimen.shadow_width);
+        menu.setShadowDrawable(R.drawable.shadow);
+        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+        menu.setFadeDegree(0.35f);
+        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+        menu.setMenu(R.layout.menu);
+    }
+}
+</pre>
+<p style="text-align: left"> </p>
+<p style="text-align: left">Para saber qué son todas las propiedades lo mejor es irse a la <a title="Documentación de la librería SlidingMenu" href="https://github.com/jfeinstein10/SlidingMenu#how-to-integrate-this-library-into-your-projects" target="_blank">página de la documentación</a>.</p>
+<p style="text-align: left">Otra ventaja que tenemos es que podemos cargar un fragment en el menú lateral, por ejemplo un ListFragment, para esto podemos declararlo en el layout de la vista que está detrás de la pantalla principal o incluso declarar sólo un FrameLayout y añadir dentro el fragment dinámicamente o sustituirlo por el fragment una vez instanciado mediante el FragmentManager, por ejemplo:</p>
+<p style="text-align: left"> </p>
+<pre class="brush: java; gutter: true; first-line: 1">//Set the front and behind content views
+setContentView(R.layout.activity_main);
+setBehindContentView(R.layout.behind_list_layout);
+        
+//Create the shop list fragment and replace the framelayout set in the behind view
+mMyListFragment = new MyListFragment();
+getSupportFragmentManager().beginTransaction().replace(R.id.framestub, mMyListFragment).commit();
+</pre>
+<p style="text-align: left"> </p>
+<p style="text-align: left"><div class="warning_block message-block"><p class="printonly"><strong>Warning!</strong></p>Si necesitamos tener la librería de soporte de android en varios proyectos (por ejemplo en ActionBarSherlock, en SlidingMenu y en nuestra app, recordad que debéis tener el mismo android-support-v4.jar u os dará un error por ser versiones diferentes).</div></p>
+<p style="text-align: left"> </p>
+<p style="text-align: left">Si queréis ver un ejemplo en funcionamiento, podéis descargar <a title="Ejemplo de SlidingMenu" href="https://play.google.com/store/apps/details?id=com.slidingmenu.example" target="_blank">la aplicación de ejemplo desde Google Play</a></p>
+<p style="text-align: left"> </p>
+<p style="text-align: left"><img class="aligncenter" style="border: 0px" alt="Ejemplo" src="https://lh4.ggpht.com/MSBdACpt_6MmrSiGA5f2GrBfmHVCQP4j3n1TUNdN8gKjOfsOqyEe6ELnLXmJi4gRMA" width="230" height="410" /></p>
+<p style="text-align: left"> </p>
+<p style="text-align: left">¡Así de fácil! Espero que os haya gustado.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://androcode.es/2013/01/implementacion-del-menu-lateral/feed/
+			</wfw:commentRss>
+			<slash:comments>15</slash:comments>
+		</item>
+		<item>
+			<title>API Oficial de Youtube – Primeros Pasos</title>
+			<link>http://androcode.es/2012/12/api-oficial-de-youtube-primeros-pasos/</link>
+			<comments>http://androcode.es/2012/12/api-oficial-de-youtube-primeros-pasos/#comments</comments>
+			<pubDate>Sat, 22 Dec 2012 01:42:31 +0000</pubDate>
+			<dc:creator>JMPergar</dc:creator>
+			<category><![CDATA[Tutoriales]]></category>
+			<category><![CDATA[Android]]></category>
+			<category><![CDATA[API]]></category>
+			<category><![CDATA[Google]]></category>
+			<category><![CDATA[Programación]]></category>
+			<category><![CDATA[Youtube]]></category>
+
+			<guid isPermaLink="false">http://androcode.es/?p=3488</guid>
+			<description><![CDATA[  Debería estar en la cama pero aquí estoy, testeando un librería y escribiendo un post para que os despertéis el sábado con una gran noticia y podáis empezar desde ya a integrar vídeos de YouTube en vuestras apps. No se vosotros pero yo llevaba mucho tiempo esperándola  había intentado varias cosas pero ninguna terminaba de funcionar bien, a excepción de un librería de terceros que rulaba &#8230; </p><p><a class="more-link block-button" href="http://androcode.es/2012/12/api-oficial-de-youtube-primeros-pasos/">Continuar leyendo</a>]]></description>
+			<content:encoded><![CDATA[<p style="text-align: center;"><a href="http://androcode.es/wp-content/uploads/2012/12/Novedades-en-la-app-de-YouTube-para-Android.jpg"><img class="aligncenter  wp-image-3532" style="border: 0px;" title="Novedades-en-la-app-de-YouTube-para-Android" src="http://androcode.es/wp-content/uploads/2012/12/Novedades-en-la-app-de-YouTube-para-Android.jpg" alt="" width="280" height="198" /></a></p>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;">Debería estar en la cama pero aquí estoy, testeando un librería y escribiendo un post para que os despertéis el sábado con una gran noticia y podáis empezar <strong>desde ya</strong> a integrar vídeos de <strong>YouTube</strong> en vuestras apps. No se vosotros pero yo llevaba mucho tiempo esperándola  había intentado varias cosas pero ninguna terminaba de funcionar bien, a excepción de un librería de terceros que rulaba por ahí pero que solo reproducía a pantalla completa, pero bueno, eso ya es cosa del pasado, ahora ya tenemos API oficial de Youtube para Android y lo que toca es poner nuestros dedos a teclear código. Así que si quieres saber como, no dudes y sigue leyendo.</p>
+<p style="text-align: left;">Si se os da bien el tema del ingles a continuación os dejo el vídeo de presentación oficial de la librería y si no tras el podréis seguir disfrutando del post.</p>
+<p style="text-align: right;"> </p>
+<p style="text-align: center;"><iframe width="560" height="315" src="http://www.youtube.com/embed/fhWaJi1Hsfo?list=PLhBgTdAWkxeDcgr7lljcTt1bKaHY48Toi" frameborder="0" allowfullscreen=""></iframe></p>
+<p style="text-align: center;"> </p>
+<p style="text-align: right;"><span id="more-3488"></span></p>
+<p style="text-align: left;">Una de las principales ventajas de la librería es que esta basada en la integración con un servicio distribuido como parte de la app de YouTube para Android, abstrayéndonos por completo de la implementación de esta y de los posibles cambios que se produzcan en la misma. Tan solo deberemos añadir la librería a nuestro proyecto y asegurarnos que tenemos la <strong>versión adecuada de la App de YouTube, en este caso la 4.2.16.</strong></p>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;"><div class="notice_block message-block"><p class="printonly"><strong>Notice</strong></p>Es necesaría la versión 4.2.16 de la App Oficial de YouTube.</div></p>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;">Para los que les preocupe la fragmentación, según Google durante los próximos día se irán actualizando la app en las versiones que aún no lo haya hecho, incluyendo <strong>Froyo en adelante.</strong></p>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;">Si importais el proyecto de ejemplo que podemos descargar junto con la librería podremos comprobar lo que nos permite realizar:</p>
+<ul>
+<li>Incrustar videos con controles nativos.</li>
+<li>Reproduccion a pantalla completa.</li>
+<li>PlayerFrament, reproductor compatible con Fragments.</li>
+<li>Control del video y del Fullscreen con nuestros propios controles.</li>
+<li>Y varios intents nuevos para lanzar eventos y comunicarnos con la App nativa de YouTube.</li>
+</ul>
+<div> </div>
+<div>Si os pica más aun la curiosidad podéis ojear la <a href="https://developers.google.com/youtube/android/player/reference/com/google/android/youtube/player/package-summary">API Reference Guide</a> y empaparos en profundidad.</div>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;">¡Vamos al tema! Una vez creado nuestro proyecto deberemos descargarnos la librería:</p>
+<p style="text-align: left;"><a href="https://developers.google.com/youtube/android/player/downloads/">YouTube Android Player API &#8211; Download</a></p>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;">Dentro del zip que descargaremos podremos encontrar dentro del directorio libs el jar que deberemos añadir a nuestro proyecto android. Y como os comente antes un directorio sample que incluye un proyecto de prueba bastante completo con todas las posibilidades que nos ofrece la librería.</p>
+<p style="text-align: left;">Como también comente anteriormente es importante asegurarnos que disponemos de la versión de la app de YouTube necesaria antes de frutastarnos buscando errores que no están en nuestro código.</p>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;">Si habéis trabajado con Google Maps v1 esta parte os sonará, al igual que en aquel caso, en este deberemos de disponer de una clave de uso que irá asociada a la firma de nuestra app, en este caso a los pares de valor huella de firma y nombre de paquete de la app. Para ello accedemos al siguiente link y seguimos las instrucciones:</p>
+<p style="text-align: left;"><a href="https://developers.google.com/youtube/android/player/register">Registrando nuestra aplicacion.</a></p>
+<p style="text-align: left;"> </p>
+<div class="notice_block message-block"><p class="printonly"><strong>Notice</strong></p>No equivocarnos y usar la huella MD5 de nuestra firma como en el caso de Google Maps, en este caso la huella a usar es la SHA1.</div>
+<div class="notice_block message-block"><p class="printonly"><strong>Notice</strong></p>Para ejecutar keytool es necesario tener instalado el JDK.</div>
+<div class="important_block message-block"><p class="printonly"><strong>Important!</strong></p></p>
+<p class="first-p">Antes de volvernos loco buscando nuestra firma de desarrollo con la que la aplicación se firma automáticamente cada vez que ejecutamos desde Eclipse os indico donde se aloja según el sistema operativo:</p>
+<p><strong>Windows Vista y 7</strong> c:\users\.android\debug.keystore windows</p>
+<p><strong>Windows XP</strong> c:\Documents and Settings\\.android\debug.keystore</p>
+<p><strong>OSX y Linux</strong> ~/.android/debug.keystore</p>
+<p></div>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;">Una vez que tenemos nuestra clave de uso ahora si que si vamos al lío, y lo mejor, es mucho más sencillo de lo que imagináis. La API integra una view que es la que incrustaremos en nuestros layouts y es tan simple como se muestra a continuación:</p>
+<p style="text-align: left;"> </p>
+<pre class="brush: xml; gutter: true; first-line: 1">	&lt;com.google.android.youtube.player.YouTubePlayerView
+		android:id="@+id/youtube_view"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" /&gt;
+</pre>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;">Una vez tenemos nuestro layout construido a nuestro gusto deberemos preparar nuestro activity, con dos peculiaridades, extenderá de <strong>YouTubeBaseActivity</strong> e implementará <strong>YouTubePlayer.OnInitializedListener</strong>. Esto hará que debamos implementar dos métodos <strong>onInitializationFailure</strong> y <strong>onInitizalizationSuccess</strong>.</p>
+<p style="text-align: left;"> </p>
+<pre class="brush: java; gutter: true; first-line: 1">public class MainActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener  {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        // TODO
+    }
+
+    @Override
+    public void onInitializationFailure(Provider arg0, YouTubeInitializationResult arg1) {
+        // TODO       
+    }
+
+    @Override
+    public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean wasRestored) {
+        // TODO   
+    }
+
+}
+</pre>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;">En el onCreate nos encargaremos de inicializar la vista e indicar la clave que usaremos para acceder al servicio mientras en el metodo onInitializationSuccess nos encargaremos de indicar que video queremos visualizar mediante el codigo del mismo que podemos extraer de la url de cualquier video de youtube. </p>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;">Finalmente la cosa quedaría asi:</p>
+<p style="text-align: left;"> </p>
+<pre class="brush: java; gutter: true; first-line: 1">public class MainActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener  {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        YouTubePlayerView youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
+        youTubeView.initialize("AIzaSyDSsi8u2Hug6yQ93r5op-_82loXpbAbpyA", this);
+    }
+
+    @Override
+    public void onInitializationFailure(Provider arg0, YouTubeInitializationResult arg1) {
+        Toast.makeText(this, "Error inicializando YouTube View", Toast.LENGTH_LONG).show();        
+    }
+
+    @Override
+    public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean wasRestored) {
+        if (!wasRestored) {
+            player.loadVideo("wKJ9KzGQq0w");
+          }    
+    }
+
+}
+</pre>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;"><div class="notice_block message-block"><p class="printonly"><strong>Notice</strong></p></p>
+<p style="text-align: left;" class="first-p">No olvidar incluir el permiso de acceso a internet en nuestro Android Manifest:</p>
+<p style="text-align: left;">&lt;uses-permission android:name=&#8221;android.permission.INTERNET&#8221;/&gt;</p>
+<p style="text-align: left;"></div></p>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;">Si ejecutamos ya podremos ver el resultado y disfrutar del vídeo completamente integrado dentro de nuestra app. Como os comente la librería permite mucho más control y esto es solo una primera toma de contacto para ver lo sencilla que se plantea.</p>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;">Si os quedáis con ganas de mas yo ojearía el ejemplo que acompaña la librería, ya que este toca todas o casi todas las funcionalidades que ofrece y no pinta ser muy complicado. Espero que lo disfrutéis, yo me voy a la cama que me lo he ganado.</p>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;">¡Saludos Devs!</p>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;"><div class="important_block message-block"><p class="printonly"><strong>Important!</strong></p></p>
+<p style="text-align: left;" class="first-p">Según indica Google es una versión experimental, así que seguro que mas pronto que tarde veremos novedades en la misma.</p>
+<p style="text-align: left;"></div></p>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;">Sitio Oficial | <a href="https://developers.google.com/youtube/android/player/">Google Developers</a></p>
+]]></content:encoded>
+			<wfw:commentRss>http://androcode.es/2012/12/api-oficial-de-youtube-primeros-pasos/feed/
+			</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		</item>
+		<item>
+			<title>AdLoopNetworks: El poder de la promoción cruzada</title>
+			<link>http://androcode.es/2012/12/adloopnetworks-el-poder-de-la-promocion-cruzada-en-los-juegos-moviles/</link>
+			<comments>http://androcode.es/2012/12/adloopnetworks-el-poder-de-la-promocion-cruzada-en-los-juegos-moviles/#comments</comments>
+			<pubDate>Tue, 18 Dec 2012 09:00:40 +0000</pubDate>
+			<dc:creator>FedeProEx</dc:creator>
+			<category><![CDATA[Artículos]]></category>
+			<category><![CDATA[AdLoopNetworks]]></category>
+			<category><![CDATA[Android]]></category>
+			<category><![CDATA[Monetizacion]]></category>
+			<category><![CDATA[Publicidad]]></category>
+
+			<guid isPermaLink="false">http://androcode.es/?p=3355</guid>
+			<description><![CDATA[El pasado 11 de Diciembre visitamos las oficinas de AdloopNetworks conociendo algo más de su producto estrella, una plataforma de promoción cruzada exclusiva para juegos móviles que permitirá a los desarrolladores aumentar las descargas y obtener ingresos de una forma más rápida. Actualmente están consiguiendo un CTR (Conversión de impresión a click) de más de un 20%, &#8230; </p><p><a class="more-link block-button" href="http://androcode.es/2012/12/adloopnetworks-el-poder-de-la-promocion-cruzada-en-los-juegos-moviles/">Continuar leyendo</a>]]></description>
+			<content:encoded><![CDATA[<p style="text-align: center;"><a href="http://androcode.es/wp-content/uploads/2012/12/adloop.png"><img style="border: 0px;" title="adloop" src="http://androcode.es/wp-content/uploads/2012/12/adloop.png" alt="" width="551" height="372" /></a></p>
+<p style="text-align: left;">El pasado 11 de Diciembre visitamos las oficinas de <a href="http://www.adloopnetworks.com/"><strong>AdloopNetworks</strong></a> conociendo algo más de su producto estrella, una plataforma de promoción cruzada exclusiva para juegos móviles que permitirá a los desarrolladores aumentar las descargas y obtener ingresos de una forma más rápida. Actualmente están consiguiendo un CTR (Conversión de impresión a click) de más de un 20%, algo muy por encima de las redes actuales</p>
+<p style="text-align: left;">Cuando un desarrollador lanza un juego le resulta muy complicado conseguir sus primeras descargas. Sólo aquellos que consiguen estar entre los primeros puestos de Google Play durante unos días tienen la posibilidad de llegar a un volumen aceptable de usuarios.</p>
+<p style="text-align: left;">Una solución para cambiar eso es la de captar nuevos usuarios promocionando tu juego en otros juegos. Mediante esta solución conseguimos usuarios de calidad (jugones) y podemos usar estos nuevos usuarios para promocionar otros juegos que ya estén o se vayan a desarrollar.</p>
+<p style="text-align: left;"> </p>
+<p><span id="more-3355"></span></p>
+<p style="text-align: left;">Actualmente existen pocas redes especializadas en algo tan concreto como los juegos móviles ya que los anunciantes pagan muy poco por promocionar su marca en juegos. Sin embargo, la realidad es que el 52% de los ingresos por publicidad móvil lo generan los juegos que además suponen tan solo el 25% de las aplicaciones de los markets.</p>
+<p style="text-align: left;"><strong>AdLoopNetworks</strong> permite a los desarrolladores de juegos hacer promoción de sus productos. Esta plataforma ofrece de forma totalmente gratuita la posibilidad de gestionar las promociones cruzadas entre tus propios juegos.</p>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;">En palabras del equipo:</p>
+<p style="text-align: left;"><em>Si tienes más de un juego, cuéntale a todos tus usuarios las novedades de los demás juegos o el nuevo juego que has desarrollado. Para esto haz una campaña “<strong>House promotion</strong>”.</em></p>
+<p style="text-align: left;"><em>¿Tienes un juego y permites a otros juegos promocionarse en el tuyo? Enhorabuena te has convertido en nuestro Publisher, ahora empezarás a recibir dinero por ello. Nuestros banners a pantalla completa y la calidad que exigimos a todos los anunciantes harán que tus usuarios no perciban la publicidad como intrusiva. Crea tu primera campaña como &#8220;<strong>Publisher</strong>&#8220;.</em></p>
+<p style="text-align: left;"><em>¿Tienes un juego y quieres conseguir nuevos usuarios? Anúnciate en la mejor red de juegos móviles. Puedes elegir en qué juegos promocionarte y el precio que pagarás por cada click o instalación. En solo dos clicks puedes crear una campaña como &#8220;<strong>Anunciante</strong>&#8220;.</em></p>
+<p style="text-align: left;"><em>Acuerdos Directos: No ponemos las reglas, las reglas las ponen los desarrolladores. Son ellos los que definen cuanto quieren cobrar y cuanto están dispuestos a pagar por los clicks e instalaciones.</em></p>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;">La empresa nos cuenta algunos casos de éxito:</p>
+<p style="text-align: left;"><strong>Ludei</strong> (filial de Ideateca), empresa referente en el sector del videojuego móvil a nivel internacional y conocida por juegos de gran éxito como <a href="https://play.google.com/store/apps/details?id=com.ideateca.android.ibasket">iBasket</a>, Slide Soccer o Videopuzzle, usa la técnica de promoción cruzada para captar nuevos usuarios.</p>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;">Según su experiencia, las acciones de <em><strong>cross promotion</strong></em> les han aportado grandes beneficios principalmente en la fase de lanzamiento.</p>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;">&#8220;<em>En nuestro caso, contar con aplicaciones con millones de descargas en todo el mundo, nos ha servido como plataforma publicitaria en ese primer empujón dentro de la campaña de marketing</em>&#8221; &#8211; afirma Urtzi Jaureguibeitia, Product Manager de Ludei. &#8220;<em>Si bien es cierto que la campaña de lanzamiento se debe acompañar de otras estrategias de marketing, la promoción cruzada ha generado un balance positivo, si comparamos los costes que conlleva la utilización del soporte y los beneficios reportados.</em>&#8220;</p>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;"><strong>Bravo Games</strong> acaba de lanzar su nuevo juego <a href=" http://androjuegos.com/daredevil-rider-para-android-nos-trae-al-motorista-mas-intrepido-a-nuestras-pantallas/">DareDevil</a>, su última creación. Cuando lanzan una aplicación se apoyan en su propia red de usuarios para ofrecerles un nuevo juego, consiguiendo así más de 500.000 descargas en tan solo unas semanas. Para esto se apoyan en plataformas como en este caso AdLoopNetworks. Algunos de sus juegos son: Penalty Championship, Push the Zombie, Retro Sports, Touch Racing Nitro Mr. Hat and the Magic Cube alcanzando alrededor de 12 millones de usuarios. La experiencia de Bravo Games dicta que siguiendo en uno de sus juegos una estrategia de cross-promotion, las descargas del resto de juegos se ven incrementadas entre un 15% y un 20%.</p>
+<p style="text-align: center;"><a href="http://androcode.es/wp-content/uploads/2012/12/adloop.png"><br /></a></p>
+<p style="text-align: left;">Integrar el SDK en nuestros proyectos es cosa de unos minutos. <strong>AdLoopNetworks</strong> nos proporcionan un SDK en forma de librería android por lo que simplemente tendremos que:</p>
+<ul style="text-align: left;">
+<li>Añadir la librería a nuestro proyecto</li>
+<li>Configurar el AndroidManifest con las <em>activites</em> del SDK</li>
+<li>Utilizar los métodos en su API para mostrar la publicidad</li>
+</ul>
+<div> </div>
+<p style="text-align: left;">En cualquier caso, una vez registrados tendremos acceso al SDK y a un manual de configuración con todos estos pasos detallados.</p>
+<p style="text-align: left;">Se trata sin duda de una gran noticia, especialmente para los desarrolladores de juegos, y que aumentará las posibilidades de promoción para los mismos.</p>
+<p style="text-align: left;"> </p>
+<p style="text-align: left;">enlace | <a href="http://adloopnetworks.com/" target="_blank">http://adloopnetworks.com/</a></p>
+]]></content:encoded>
+			<wfw:commentRss>http://androcode.es/2012/12/adloopnetworks-el-poder-de-la-promocion-cruzada-en-los-juegos-moviles/feed/
+			</wfw:commentRss>
+			<slash:comments>1</slash:comments>
+		</item>
+		<item>
+			<title>Trabajando con Parcelables</title>
+			<link>http://androcode.es/2012/12/trabajando-con-parcelables/</link>
+			<comments>http://androcode.es/2012/12/trabajando-con-parcelables/#comments</comments>
+			<pubDate>Mon, 17 Dec 2012 08:30:54 +0000</pubDate>
+			<dc:creator>Fernando F. Gallego</dc:creator>
+			<category><![CDATA[Tutoriales]]></category>
+			<category><![CDATA[Android]]></category>
+			<category><![CDATA[intermedio]]></category>
+			<category><![CDATA[parcelable]]></category>
+			<category><![CDATA[Programación]]></category>
+
+			<guid isPermaLink="false">http://androcode.es/?p=3364</guid>
+			<description><![CDATA[Hola a todos! hoy me estreno en androcode.es con un artículo sobre tipos parcelables, si no sabes lo que son, hoy aprenderás para qué sirven y cómo implementarlos. Normalmente cuando queremos pasar un objeto entre actividades tenemos varias opciones, unas más elegantes y otras menos. Tal vez lo primero que se nos ocurra sea guardar &#8230; </p><p><a class="more-link block-button" href="http://androcode.es/2012/12/trabajando-con-parcelables/">Continuar leyendo</a>]]></description>
+			<content:encoded><![CDATA[<p>Hola a todos! hoy me estreno en androcode.es con un artículo sobre tipos parcelables, si no sabes lo que son, hoy aprenderás para qué sirven y cómo implementarlos.</p>
+<p><a href="http://androcode.es/wp-content/uploads/2012/12/decibels.png"><img src="http://androcode.es/wp-content/uploads/2012/12/decibels-300x201.png" alt="" title="teach" width="300" height="201" class="aligncenter size-medium wp-image-3385" /></a></p>
+<p>Normalmente cuando queremos pasar un objeto entre actividades tenemos varias opciones, unas más elegantes y otras menos.</p>
+<p>Tal vez lo primero que se nos ocurra sea guardar el objeto en un campo static de una de nuestras clases, y recuperarlo en la nueva actividad, pero este tipo de prácticas no están muy bien vistas ya que puedes incurrir en problemas de concurrencia, leaks de memoria, etc.</p>
+<p>Puede que lo siguiente que se te ocurra sea implementar en el objeto la interfaz serializable. Esta solución no es mala para objetos pequeños pero en la práctica es muy lenta y si vamos a serializar un objeto complejo y grande, no es la mejor solución. Por eso el equipo de android decidió inventarse los tipos parcelables, que en la práctica es como escribir los tipos en un <a href="http://developer.android.com/reference/android/os/Bundle.html" target="_blank">Bundle</a> y recuperarlos después. De echo el objeto Bundle implementa la interfaz Parcelable y cuando haces intent.putExtra(&#8220;key&#8221;,&#8221;hello world&#8221;), estás escribiendo un Bundle asociado al intent, y cuando haces getIntent().getExtras() para leer, es un Bundle de donde lees.</p>
+<p>Pero vamos a ver esto con más detalle y vamos a ver como podemos implementar la interfaz <a href="http://developer.android.com/reference/android/os/Parcelable.html" target="_blank">Parcelable</a> en nuestros objetos para pasarlos entre actividades o servicios de una manera rápida.<br />
+&nbsp;<br />
+<span id="more-3364"></span></p>
+<p>Lo primero es crearnos una clase que implemente la interfaz <a href="http://developer.android.com/reference/android/os/Parcelable.html" target="_blank">Parcelable</a><br />
+&nbsp;</p>
+<pre class="brush: java;">
+package com.example.parcelable;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Estudiante implements Parcelable {
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+
+	}
+
+}</pre>
+<p>&nbsp;<br />
+Esto nos creará un par de métodos en la clase, describeContents, que en los ejemplos siempre ponen return 0; así que de momento no nos preocupamos, y el método writeToParcel que recibe un objeto Parcel de destino y un flag que puede ser 0 o <a href="http://developer.android.com/reference/android/os/Parcelable.html#PARCELABLE_WRITE_RETURN_VALUE" target="_blank">PARCELABLE_WRITE_RETURN_VALUE</a>.</p>
+<p>Yo recomiendo añadir otro constructor al objeto que reciba un Parcel para recrearlo a partir de ahí y un método readFromParcel(Parcel in) para rellenar los campos del objeto y tenerlo más ordenado.</p>
+<p>Además vamos a añadirle unos campos a la clase, porque una clase sin campos no vale para mucho ¿no?<br />
+&nbsp;</p>
+<pre class="brush: java;">package com.example.parcelable;
+
+import java.util.List;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Estudiante implements Parcelable {
+	int fechaNacimiento;
+	String nombreCompleto;
+	boolean esHijoUnico;
+	float[] notas;
+	List&lt;Estudiante&gt; amigos;
+
+	public Estudiante() {
+		notas = new float[3];
+		amigos = new ArrayList&lt;Estudiante&gt;();
+	}
+
+	public Estudiante(Parcel in) {
+		notas = new float[3];
+		amigos = new ArrayList&lt;Estudiante&gt;();
+		readFromParcel(in);
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+
+	}
+
+	private void readFromParcel(Parcel in) {
+
+	}
+
+}</pre>
+<p>&nbsp;</p>
+<p>Cómo veis, he añadido unos campos de distintos tipos, incluidos un array de floats y una lista tipada (para que veáis que se pueden meter distintos tipos en un Parcel).</p>
+<p>Ahora vamos a ver la chicha, cómo guardar el objeto en un Parcel y como recuperarlo después.</p>
+<p>Básicamente el objeto Parcel nos expone unos métodos para escribir nuestros campos según su tipo para no equivocarnos, por lo que rellenamos nuestro método writeToParcel de la forma siguiente:<br />
+&nbsp;</p>
+<pre class="brush: java;">@Override
+public void writeToParcel(Parcel dest, int flags) {
+	dest.writeInt(fechaNacimiento);
+	dest.writeString(nombreCompleto);
+	dest.writeBooleanArray(new boolean[]{esHijoUnico});
+	dest.writeFloatArray(notas);
+	dest.writeTypedList(amigos);
+}</pre>
+<p>&nbsp;</p>
+<p>Mientras escribía esto he descubierto que <a href="http://code.google.com/p/android/issues/detail?id=5973" target="_blank">no hay un método Parcel.writeBoolean(boolean val)</a> (gracias Google!) por lo que podéis o bien escribirlo en un array de booleans con un único valor, o escribir un byte y luego parsearlo como boolean.</p>
+<p>Ahora vamos a ver como recuperaríamos nuestro objeto de un Parcel, así que rellenamos el método readFromParcel de esta manera:<br />
+&nbsp;</p>
+<pre class="brush: java;">
+private void readFromParcel(Parcel in) {
+	fechaNacimiento = in.readInt();
+	nombreCompleto = in.readString();
+
+	boolean[] temp = new boolean[1];
+	in.readBooleanArray(temp);
+	esHijoUnico = temp[0];
+
+	in.readFloatArray(notas);
+	in.readTypedList(amigos, CREATOR);
+}</pre>
+<p>&nbsp;</p>
+<p>¡Ostras! Para leer una lista tipada necesito un objeto Parcelable.Creator, ¿qué es eso? Digamos que es un objeto que genera objetos del tipo que le digas a partir de un Parcel (vamos, lo que veníamos haciendo) pero es necesario para recrear los objetos en otros Parcelables. Es muy sencillo, sólo hay que añadir esto:<br />
+&nbsp;</p>
+<pre class="brush: java;">public static final Parcelable.Creator&lt;Estudiante&gt; CREATOR
+	= new Parcelable.Creator&lt;Estudiante&gt;() {
+		public Estudiante createFromParcel(Parcel in) {
+			return new Estudiante(in);
+		}
+
+		public Estudiante[] newArray(int size) {
+			return new Estudiante[size];
+		}
+	};</pre>
+<p>&nbsp;</p>
+<p>Ahora veis como añadir un constructor que recibe un Parcel era buena idea para tener todo limpito. Además, nota importante, cuando leemos del Parcel no hay pares clave-valor, así que hay que <strong>leerlo en el mismo orden en que lo escribimos</strong>.</p>
+<p>¡Pues ya tenemos nuestro objeto implementado!  Vamos a ver si funciona. Creamos un par de activities, en el primero creamos un par de estudiantes, uno amigo del otro (¡no es un amistad mutua así que sin referencias cruzadas por favor!) y lo metemos en los extras de un intent que viajarán a la segunda activity donde rescatamos nuestro estudiante y escribimos en el LogCat toda la info que hemos recibido de él y de su amigo no correspondido:<br />
+&nbsp;<br />
+<strong>MainActivity.java</strong></p>
+<pre class="brush: java;">Estudiante otroEstudiante = new Estudiante();
+otroEstudiante.nombreCompleto = "Perico Palotes";
+otroEstudiante.esHijoUnico = false;
+otroEstudiante.fechaNacimiento = 1990;
+otroEstudiante.notas = new float[]{7.8f, 4.9f, 10.0f};
+otroEstudiante.amigos = new ArrayList&lt;Estudiante&gt;();
+
+Estudiante estudiante = new Estudiante();
+estudiante.nombreCompleto = "Fernando F. Gallego";
+estudiante.esHijoUnico = true;
+estudiante.fechaNacimiento = 1983;
+estudiante.notas = new float[]{9.5f, 8.6f, 4.6f};
+estudiante.amigos = new ArrayList&lt;Estudiante&gt;();
+
+estudiante.amigos.add(otroEstudiante);
+
+Intent intent = new Intent(this, DestActivity.class);
+intent.putExtra("estudiante", estudiante);
+startActivity(intent);</pre>
+<p>&nbsp;<br />
+<strong>DestActivity.java</strong></p>
+<pre class="brush: java;">Estudiante estudiante = getIntent().getParcelableExtra("estudiante");
+
+Log.i("estudiante", estudiante.nombreCompleto);
+Log.i("estudiante", String.valueOf(estudiante.esHijoUnico));
+Log.i("estudiante", String.valueOf(estudiante.fechaNacimiento));
+Log.i("estudiante", Arrays.toString(estudiante.notas));
+Estudiante amigo = estudiante.amigos.get(0);
+Log.i("amigo", amigo.nombreCompleto);
+Log.i("amigo", String.valueOf(amigo.esHijoUnico));
+Log.i("amigo", String.valueOf(amigo.fechaNacimiento));
+Log.i("amigo", Arrays.toString(amigo.notas));</pre>
+<p>&nbsp;</p>
+<p>Y esto es lo que veremos en nuestro querido LogCat<br />
+&nbsp;</p>
+<pre class="brush: bash;">I/estudiante(6739): Fernando F. Gallego
+I/estudiante(6739): true
+I/estudiante(6739): 1983
+I/estudiante(6739): [9.5, 8.6, 4.6]
+I/amigo(6739): Perico Palotes
+I/amigo(6739): false
+I/amigo(6739): 1990
+I/amigo(6739): [7.8, 4.9, 10.0]</pre>
+<p>&nbsp;</p>
+]]></content:encoded>
+			<wfw:commentRss>http://androcode.es/2012/12/trabajando-con-parcelables/feed/
+			</wfw:commentRss>
+			<slash:comments>1</slash:comments>
+		</item>
+		<item>
+			<title>MapsForge: OpenStreetMap en Android 3/3</title>
+			<link>http://androcode.es/2012/12/mapsforge-openstreetmap-en-android-33/</link>
+			<comments>http://androcode.es/2012/12/mapsforge-openstreetmap-en-android-33/#comments</comments>
+			<pubDate>Thu, 13 Dec 2012 09:08:02 +0000</pubDate>
+			<dc:creator>JMPergar</dc:creator>
+			<category><![CDATA[Tutoriales]]></category>
+			<category><![CDATA[Android]]></category>
+			<category><![CDATA[Libreria]]></category>
+			<category><![CDATA[MapsForge]]></category>
+			<category><![CDATA[OpenStreetMap]]></category>
+			<category><![CDATA[Programación]]></category>
+
+			<guid isPermaLink="false">http://androcode.es/?p=3335</guid>
+			<description><![CDATA[&#160; &#160; Y vamos llegando al final, después de enseñaros como integrar MapsForge en nuestras apps y como aprovechar su API para overlays, hoy os contaremos como integrar los mapas offline en nuestra apps y así poder prescindir de la conexión de datos. &#160; Lo primero que deberemos hacer es obtener nuestro archivo de mapas &#8230; </p><p><a class="more-link block-button" href="http://androcode.es/2012/12/mapsforge-openstreetmap-en-android-33/">Continuar leyendo</a>]]></description>
+			<content:encoded><![CDATA[<p>&nbsp;</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="http://www.ingens-networks.com/blog/image.axd?picture=2012%2f10%2fmapsforge.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>Y vamos llegando al final, después de enseñaros <strong><a href="http://androcode.es/2012/12/mapsforge-openstreetmap-en-android-13/">como integrar MapsForge en nuestras apps</a></strong> y <strong><a href="http://androcode.es/2012/12/mapsforge-openstreetmap-en-android-23/">como aprovechar su API para overlays</a></strong>, hoy os contaremos como integrar los mapas offline en nuestra apps y así poder prescindir de la conexión de datos.</p>
+<p>&nbsp;</p>
+<p><span id="more-3335"></span></p>
+<p>Lo primero que deberemos hacer es obtener nuestro archivo de mapas que insertaremos en nuestra app, estos mapas irán en un formato especial <strong>.map</strong> que obtendremos gracias a <strong>Osmosis</strong> que nos ayudará a convertir los mapas de <strong>OpenStreetMap</strong> en formato <strong>.osm</strong> al nombrado anteriormente. Como comentamos en un post anterior la virtud de estos mapas es que son <strong>vectoriales</strong> y serán renderizados gracias a MapsForge.</p>
+<p>&nbsp;</p>
+<p>Para poder ejecutar Osmosis lo descargaremos de la url que indicamos a continuación, posteriormente lo descomprimimos en un directorio de nuestra elección y configuramos el path de sistema para que detecte el directorio <em>bin</em> de Osmosis.</p>
+<p>&nbsp;</p>
+<p><a href="http://bretth.dev.openstreetmap.org/osmosis-build/osmosis-latest.tgz">http://bretth.dev.openstreetmap.org/osmosis-build/osmosis-latest.tgz</a></p>
+<p>&nbsp;</p>
+<p>Una vez realizado el proceso de instalación teclearemos &#8216;osmosis&#8217; desde la consola y comprobamos que todo funciona correctamente. Nos debería salir instrucciones del programa.</p>
+<p>&nbsp;</p>
+<p><em>NOTA: La implementación de Osmosis esta basada en Maven y he detectado que si tenemos Maven instalado se generan conflictos haciendo imposible la ejecución correcta del mismo. En mi caso lo solucione creando una maquina virtual y ejecutándolo allí en un sistema limpio. Osmosis es una aplicación java y por tanto lo podréis ejecutar tanto en Windows como Linux.</em></p>
+<p><em><br />
+</em></p>
+<p>Osmosis también nos permite descargar los mapas de OpenStreeMap, para ello deberemos usar el siguiente comando:</p>
+<p>&nbsp;</p>
+<pre class="brush: bash;">osmosis --ra left=--6.0497 bottom=36.9059 right=--6.0998 top=36.9326 --write-xml lebrija.osm</pre>
+<p>&nbsp;</p>
+<p><em>Nota: La descarga de datos desde OpenStreetMap está limitada 0.25 grados o 50000 nodos, por lo tanto en la mayoría de los casos este sistema se nos quedará corto.</em></p>
+<p>&nbsp;</p>
+<p>Si nuestras necesidades exceden las limitaciones de descarga de OpenStreetMap podemos acceder a portales que suministran archivos más extensos, incluso del planeta completo. Un ejemplo de portal sería <strong>geofabrik</strong>:</p>
+<p>&nbsp;</p>
+<p><a href="http://download.geofabrik.de/openstreetmap/">http://download.geofabrik.de/openstreetmap/</a></p>
+<p>&nbsp;</p>
+<p>Una vez tenemos el archivo de mapa necesario y nuevamente gracias a Osmosis podemos recortarlo para limitarlo a la zona requerida:</p>
+<p>&nbsp;</p>
+<pre class="brush: bash;">osmosis --read-xml spain.osm --bb left=-6.0497 bottom=36.9059  right=-6.0998 top=36.9326 --write-xml lebrija.osm</pre>
+<p>&nbsp;</p>
+<p>Llegados a este punto tendríamos nuestro fichero .osm necesario y solo nos quedaría convertirlo al formato necesario para la lectura por parte de MapsForge. Para ello nos descargaremos desde el portal de MapsForge un plugin que añadiremos a Osmosis y que nos ayudara en este menester. A continuación el enlace:</p>
+<p>&nbsp;</p>
+<p><a href="http://mapsforge.googlecode.com/files/mapsforge-map-writer-0.3.0-jar-with-dependencies.jar">mapsforge-map-writer-0.3.0-jar-with-dependencies.jar</a></p>
+<p>&nbsp;</p>
+<p>Este fichero jar lo copiaremos dentro del directorio<em> &#8216;lib/default&#8217;</em> de Osmosis y a continuación dentro del directorio <em>&#8216;osmosis/config&#8217;</em> crearemos el fichero <em>osmosis-plugins.conf</em> al que deberemos añadir la siguiente linea:</p>
+<p>&nbsp;</p>
+<pre class="brush: bash;">org.mapsforge.map.writer.osmosis.MapFileWriterPluginLoader</pre>
+<p>&nbsp;</p>
+<p>Pues bien, ya lo tenemos todo listo para convertir nuestros mapas, a continuación os indico el comando necesario:</p>
+<p>&nbsp;</p>
+<pre class="brush: bash;">osmosis --read-xml lebrija.osm --mapfile-writer file=lebrija.map bbox=minLat,minLon,maxLat,maxLon</pre>
+<p>&nbsp;</p>
+<p>Para poder usar los mapas descargados deberemos incluir los mismos en la tarjeta SD en un directorio de nuestra elección, para conseguirlo los copiaremos en el directorio <em>&#8216;assets&#8217;</em> de nuestro proyecto y los copiaremos a la SD gracias al siguiente código:</p>
+<p>&nbsp;</p>
+<pre class="brush: java;">AssetManager am = getAssets();
+
+try {
+
+    File dir = new File(Environment.getExternalStorageDirectory() + "/playandtourosm/");
+
+    if (!dir.exists()) {
+        dir.mkdir();
+    }
+
+    String fileName = DESTINATION_FILENAME;
+    File destinationFile = new File(Environment.getExternalStorageDirectory() + "/playandtourosm/" + fileName);
+
+    if (!destinationFile.exists()) {
+        InputStream in = am.open(ORIGIN_FILENAME);
+        FileOutputStream f = new FileOutputStream(destinationFile);
+        byte[] buffer = new byte[1024];
+
+        int len1 = 0;
+
+        while ((len1 = in.read(buffer)) &gt; 0) {
+            f.write(buffer, 0, len1);
+        }
+
+        f.close();
+    }
+
+} catch (Exception e) {
+    Log.e("CopyFileFromAssetsToSD", e.getMessage());
+}</pre>
+<p>&nbsp;</p>
+<p><em>NOTA: Android al compilar nuestra app comprime alguno formatos de archivos alojados en assets, entre los que se incluye los ficheros .map, para evitar esto bastará que cuando copiemos nuestro fich</em><em>ero de mapas en assets lo hagamos con la extensión cambiada (por ejemplo .mp3) y al realizar la copia a la tarjeta SD le volvamos a cambiar la extensión (DESTINATION_FILENAME).</em></p>
+<p>&nbsp;</p>
+<p>Con esto y el código de activity que os mostramos a continuación ya lo tendríamos todo listo para mostrar nuestros mapas offline:</p>
+<p>&nbsp;</p>
+<pre class="brush: java;">public class MyOsmActivity extends MapActivity {   
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        MapView mapView = new MapView(this);
+        mapView.setClickable(true);
+        mapView.setBuiltInZoomControls(true);
+
+        String filepath = Environment.getExternalStorageDirectory().getPath() + "/maps/ramblas.map";
+        mapView.setMapFile(new File(filepath));
+        setContentView(mapView);        
+    }
+}</pre>
+<p>&nbsp;</p>
+<p>Como último apunte señalar que otro de los puntos flacos de la librería es que carece de la posibilidad de limitar el desplazamiento por el mapa a la zona descargada, pero he estado trabajando en ello y en el siguiente link que os proporciono podréis encontrar unas modificaciones de la librería para incluir esta funcionalidad. Esta un poco verde aun y es mejorable pero ya es usable.</p>
+<p>&nbsp;</p>
+<p><a href="http://code.google.com/p/mapsforge/issues/detail?id=205">http://code.google.com/p/mapsforge/issues/detail?id=205</a></p>
+<p>&nbsp;</p>
+<p>Ya hemos finalizo, espero que os sea de utilidad, nosotros ya lo estamos usando en nuestras apps.</p>
+<p>&nbsp;</p>
+<p>Fuente | <a href="http://www.ingens-networks.com/blog/post/2012/10/03/MapsForge-Mejorando-el-rendimiento-de-OpenStreetMap-en-Android-33.aspx">Ingens Blog</a></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+			<wfw:commentRss>http://androcode.es/2012/12/mapsforge-openstreetmap-en-android-33/feed/
+			</wfw:commentRss>
+			<slash:comments>5</slash:comments>
+		</item>
+		<item>
+			<title>MapsForge: OpenStreetMap en Android 2/3</title>
+			<link>http://androcode.es/2012/12/mapsforge-openstreetmap-en-android-23/</link>
+			<comments>http://androcode.es/2012/12/mapsforge-openstreetmap-en-android-23/#comments</comments>
+			<pubDate>Wed, 12 Dec 2012 08:49:33 +0000</pubDate>
+			<dc:creator>JMPergar</dc:creator>
+			<category><![CDATA[Tutoriales]]></category>
+			<category><![CDATA[Android]]></category>
+			<category><![CDATA[Libreria]]></category>
+			<category><![CDATA[MapsForge]]></category>
+			<category><![CDATA[OpenStreetMap]]></category>
+			<category><![CDATA[Programación]]></category>
+
+			<guid isPermaLink="false">http://androcode.es/?p=3333</guid>
+			<description><![CDATA[&#160; &#160; En el &#250;ltimo post os dimos unas pinceladas de como incluir, gracias a MapsForge, la visualizaci&#243;n de Mapas de OpenStreetMap en nuestras aplicaciones para Android, en esta ocasi&#243;n os mostraremos la posibilidades de su API de Overlays para mostrar puntos, &#225;reas, o caminos sobre zonas del mapa. &#160; La API de MapsForge nos &#8230; </p><p><a class="more-link block-button" href="http://androcode.es/2012/12/mapsforge-openstreetmap-en-android-23/">Continuar leyendo</a>]]></description>
+			<content:encoded><![CDATA[<div>&nbsp;</div>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="http://ingens-networks.com/blog/image.axd?picture=2012%2f10%2fmapsforge.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>En el <a href="http://androcode.es/2012/12/mapsforge-openstreetmap-en-android-13/">&uacute;ltimo post</a> os dimos unas pinceladas de como incluir, gracias a MapsForge, la visualizaci&oacute;n de Mapas de OpenStreetMap en nuestras aplicaciones para Android, en esta ocasi&oacute;n os mostraremos la posibilidades de su API de Overlays para mostrar puntos, &aacute;reas, o caminos sobre zonas del mapa.</p>
+<p>&nbsp;</p>
+<p>La API de MapsForge nos proporciona tres clases para la visualizaci&oacute;n de elementos sobre el mapa, estas clases son:</p>
+<ul>
+<li><strong>ArrayItemizedOverlay</strong>: Para la visualizaci&oacute;n de puntos de puntos.</li>
+<li><strong>ArrayWayOverlay</strong>: Para la visualizaci&oacute;n de caminos.</li>
+<li><strong>ArrayCircleOverlay</strong>: Para la visualizaci&oacute;n de &aacute;reas.</li>
+</ul>
+<div>&nbsp;</div>
+<p><span id="more-3333"></span></p>
+<div>En este post nos centraremos en explicar la visualizaci&oacute;n de puntos y los pasos generales para el uso e inclusi&oacute;n de overlays. Para empezar a ver nuestros puntos al mapa bastar&aacute; con instanciar la clase ArrayItemizedOverlay asoci&aacute;ndole un marker por defecto y luego ir a&ntilde;adi&eacute;ndole puntos gracias a la clase OverlayItem. Un ejemplo a&ntilde;adiendo un punto quedar&iacute;a as&iacute;:</div>
+<div>&nbsp;</div>
+<div>
+<pre class="brush: java;">// Obtenemos la imagen a utilizar de nuestros recursos
+Drawable defaultMarker = getResources().getDrawable(R.drawable.marker);
+
+// Creamos el overlay que almecenar&aacute; y gestionar&aacute; nuestros puntos
+ArrayItemizedOverlay itemizedOverlay = new ArrayItemizedOverlay(defaultMarker);
+
+// Elegimos la ubicaci&oacute;n del punto
+GeoPoint geoPoint = new GeoPoint(41.38, 2.15);
+
+// Creamos el punto en custi&oacute;n, a partir de las coordenadas, titulo y descripci&oacute;n
+OverlayItem item = new OverlayItem(geoPoint, "Mi punto", "Un punto de prueba para realizar el tutorial");
+
+// Incluimos el punto en nuestro overlay
+itemizedOverlay .addItem(item);
+
+// Y por &uacute;ltimo a&ntilde;adimos el overlay a nuestro MapView
+mapView.getOverlays().add(itemizedOverlay);</pre>
+</div>
+<div>&nbsp;</div>
+<div>Tambi&eacute;n podemos si lo deseamos a&ntilde;adir un marker propio a cada OverlayItem pas&aacute;ndoselo como par&aacute;metro en el constructor. En este caso deberemos, en el anterior tambi&eacute;n podemos pero no es necesario, configurar la alineaci&oacute;n de nuestro marker. Esta acci&oacute;n la realizamos mediante los siguientes m&eacute;todos:</div>
+<div>&nbsp;</div>
+<div>
+<pre class="brush: java;">ItemizedOverlay.boundCenter(drawable);
+ItemizedOverlay.boundCenterBottom(drawable);</pre>
+</div>
+<div>&nbsp;</div>
+<div>Estos m&eacute;todos nos devolver&aacute; los drawables que debemos pasar como par&aacute;metros para seleccionarlos como markers.</div>
+<div>&nbsp;</div>
+<div>Una de las carencias que se hace notar en esta librer&iacute;a la falta de una implementaci&oacute;n para mostrar globos de informaci&oacute;n asociados a los puntos, lo que si tenemos es control sobre los eventos de pulsaci&oacute;n sobre los elementos visualizados en los overlays y esto nos ayudar&aacute; a visualizar informaci&oacute;n acerca de los mismos o cualquier otra acci&oacute;n que quisi&eacute;ramos disparar. Para ello deberemos de extender alguno de los overlays que usamos y sobreescribir los metodos onTap o onLongPress. A continuaci&oacute;n os mostramos un ejemplo:</div>
+<div>&nbsp;</div>
+<div>
+<pre class="brush: java;">public class MyCustomOverlay extends ArrayItemizedOverlay {
+    private Context mContext;
+
+    public MyCustomOverlay(Context context, Drawable marker) {
+
+        super(marker);
+        this.mContext = context;
+
+    }
+
+    @Override
+    protected boolean onTap(int index) {
+        OverlayItem item = createItem(index);
+
+        Toast.makeText(mContext, "Tap [item n&ordm; " + index + "]: " + item.getTitle(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected boolean onLongPress(int index) {
+        OverlayItem item = createItem(index);
+
+        Toast.makeText(mContext, "LongPress[item n&ordm; " + index + "]: " + item.getTitle(), Toast.LENGTH_LONG).show();
+    }
+
+}</pre>
+</div>
+<p>&nbsp;</p>
+<p>Con esto hemos acabado por hoy, en el siguiente post terminaremos y os contaremos la parte m&aacute;s jugosa, los mapas offline.</p>
+<p>&nbsp;</p>
+<p>fuente |&nbsp;<a href="http://www.ingens-networks.com/blog/post/2012/10/02/MapsForge-Mejorando-el-rendimiento-de-OpenStreetMap-en-Android-23.aspx">Ingens Blog</a></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+			<wfw:commentRss>http://androcode.es/2012/12/mapsforge-openstreetmap-en-android-23/feed/
+			</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
