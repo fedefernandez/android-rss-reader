@@ -16,16 +16,18 @@ Features
 Including In Your Project
 ======
 
-This library is presented as a `.jar` file which you can include in the libs/ folder of your application. 
-You can download the latest version from the [downloads page][1].
-
 If you are a Maven user you can include the library by specifying it as a dependency (**IMPORTANT: the library is not available on maven central repo**):
 
     <dependency>
         <groupId>com.projectsexception</groupId>
         <artifactId>android-rss-reader</artifactId>
-        <version>0.0.1</version>
+        <version>0.1.0</version>
     </dependency>
+
+Http Connection
+======
+
+[OkHttp][1] will be used if is present on runtime classpath
 
 Developed By
 ============
@@ -49,6 +51,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-[1]: https://bitbucket.org/fedeproex/android-rss-reader/downloads
+[1]: http://square.github.io/okhttp/
 [2]: http://projectsexception.com
 [3]: http://www.apache.org/licenses/LICENSE-2.0
