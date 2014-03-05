@@ -112,6 +112,15 @@ public class FeedHandler extends DefaultHandler {
                     data = true;
                     buffer = new StringBuilder();
                 }
+            } else if (name.equals(feedType.getImageElement())) {
+                if (feedType == FeedType.ATOM) {
+                    entry.setImage(atts.getValue("url"));
+                } else if (feedType == FeedType.RSS) {
+                    String type = atts.getValue("type");
+                    if (type != null && type.startsWith("image/")) {
+                        entry.setImage(atts.getValue("url"));
+                    }
+                }
             }
         }
     }

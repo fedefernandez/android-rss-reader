@@ -1,9 +1,9 @@
 package com.projectsexception.rssreader.model;
 
 public enum FeedType {
-    RSS("rss", "item", "pubDate", "description"),
-    RDF("RDF", "item", "date", "description"),
-    ATOM("feed", "entry", "updated", "content");
+    RSS("rss", "item", "pubDate", "description", "enclosure"),
+    RDF("RDF", "item", "date", "description", null),
+    ATOM("feed", "entry", "updated", "content", "thumbnail");
     
     private String rootElement;
     private String rootTitleElement;
@@ -13,8 +13,9 @@ public enum FeedType {
     private String entryUpdateElement;
     private String entryLinkElement;
     private String entrySummaryElement;
+    private String imageElement;
 
-    private FeedType(String rootElement, String entryElement, String entryUpdateElement, String entrySummaryElement) {
+    private FeedType(String rootElement, String entryElement, String entryUpdateElement, String entrySummaryElement, String imageElement) {
         this.rootElement = rootElement;
         this.rootTitleElement = "title";
         this.rootLinkElement = "link";
@@ -23,6 +24,7 @@ public enum FeedType {
         this.entryUpdateElement = entryUpdateElement;
         this.entryLinkElement = "link";
         this.entrySummaryElement = entrySummaryElement;
+        this.imageElement = imageElement;
     }
     
     public String getRootElement() {
@@ -55,5 +57,9 @@ public enum FeedType {
 
     public String getEntrySummaryElement() {
         return entrySummaryElement;
+    }
+
+    public String getImageElement() {
+        return imageElement;
     }
 }

@@ -9,6 +9,7 @@ public class FeedEntry {
 	private String link;
 	private String summary;
 	private Date pubdate;
+	private String image;
 
 	public String getTitle() {
         return title;
@@ -40,6 +41,14 @@ public class FeedEntry {
 
     public void setPubdate(Date pubdate) {
         this.pubdate = pubdate;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override

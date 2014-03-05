@@ -69,6 +69,7 @@ public class SimpleFeedReaderTest {
         FeedEntry entry = feed.getEntryList().get(0);
         assertEquals("Security Enhancements in Jelly Bean", entry.getTitle());
         assertEquals("http://feedproxy.google.com/~r/blogspot/hsDu/~3/Q204r-VOkgo/security-enhancements-in-jelly-bean.html", entry.getLink());
+        assertEquals("http://1.bp.blogspot.com/-ak-KpU1tBWY/URwL4H1K2QI/AAAAAAAAB8I/7sQBdBaQQG0/s72-c/adb-crop-new.png", entry.getImage());
         assertNotNull(entry.getPubdate());
         Date date = entry.getPubdate();
         Calendar calendar = GregorianCalendar.getInstance();
